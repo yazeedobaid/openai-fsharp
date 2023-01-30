@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net7.0</TargetFramework>
+    <GenerateProgramFile>false</GenerateProgramFile>
+    <RootNamespace>test</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="Sample.fs" />
+    <Compile Include="Fixtures\Completions.fs" />
+    <Compile Include="Helpers.fs" />
+    <Compile Include="Completions.fs" />
+    <Compile Include="Main.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Expecto" Version="9.*" />
+    <PackageReference Include="Suave" Version="2.6.2" />
+    <PackageReference Include="YoloDev.Expecto.TestSdk" Version="0.*" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.*" />
+    <PackageReference Update="FSharp.Core" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Client\Client.fsproj" />
+  </ItemGroup>
+</Project>

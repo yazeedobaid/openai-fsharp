@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Client", "Client\Client.fsproj", "{63B8C712-E707-4E9B-A66C-60E1D1965F5F}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Tests", "Tests\Tests.fsproj", "{79E70665-930B-4E15-A4F5-233D13937346}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Call", "Call\Call.fsproj", "{500B1AA7-0BEA-42E1-BC23-921511C2EB07}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{63B8C712-E707-4E9B-A66C-60E1D1965F5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63B8C712-E707-4E9B-A66C-60E1D1965F5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63B8C712-E707-4E9B-A66C-60E1D1965F5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63B8C712-E707-4E9B-A66C-60E1D1965F5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79E70665-930B-4E15-A4F5-233D13937346}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79E70665-930B-4E15-A4F5-233D13937346}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79E70665-930B-4E15-A4F5-233D13937346}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79E70665-930B-4E15-A4F5-233D13937346}.Release|Any CPU.Build.0 = Release|Any CPU
+		{500B1AA7-0BEA-42E1-BC23-921511C2EB07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{500B1AA7-0BEA-42E1-BC23-921511C2EB07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{500B1AA7-0BEA-42E1-BC23-921511C2EB07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{500B1AA7-0BEA-42E1-BC23-921511C2EB07}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
