@@ -1,6 +1,7 @@
 module Tests.Completions
 
 open OpenAI
+open OpenAI.Client
 open OpenAI.Completions
 open Tests.Helpers
 open Expecto
@@ -13,11 +14,11 @@ open Tests.Fixtures.Completions
 let tests =
     testList
         "completions"
-        [ test "completions test" {
+        [ test "completions create test" {
               let response = createCompletionResponse ()
-              let responseObject = serialize<CreateResponse> (response)
+              let responseObject = serialize<CreateResponse> response
 
-              use server = POST >=> request (fun _ -> response |> Successful.OK) |> serve
+              use _ = POST >=> request (fun _ -> response |> Successful.OK) |> serve
 
               let client =
                   { ApiConfig = { ApiKey = "apiKey"; Endpoint = url "" }
@@ -31,6 +32,27 @@ let tests =
                         Prompt = "the earth has a shape of"
                         Temperature = 0
                         Stop = "." }
+
+              Expect.equal response responseObject ""
+          }
+          test "completions create test using computation expression" {
+              let response = createCompletionResponse ()
+              let responseObject = serialize<CreateResponse> response
+
+              use _ = POST >=> request (fun _ -> response |> Successful.OK) |> serve
+
+              let response =
+                  openAI {
+                      endPoint (url "")
+                      apiKey "apiKey"
+                      completions
+
+                      create
+                          { Model = "text-davinci-003"
+                            Prompt = "the earth has a shape of"
+                            Temperature = 0
+                            Stop = "." }
+                  }
 
               Expect.equal response responseObject ""
           } ]
