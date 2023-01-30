@@ -49,7 +49,9 @@ type ModelResponse =
       Root: string
       Parent: string option }
 
-type ListModelsResponse = { Object: string; Data: ModelResponse[] }
+type ListModelsResponse =
+    { Object: string
+      Data: ModelResponse[] }
 
 
 // Completions Resource Types
@@ -93,5 +95,42 @@ type CreateResponse =
       Object: string
       Created: int
       Model: string
+      Choices: Choice[]
+      Usage: CreateResponseUsage }
+
+
+// Edits Resource Types
+
+namespace OpenAI.Edits
+
+open System.Text.Json.Serialization
+
+type CreateRequest =
+    { Model: string
+      Input: string
+      Instruction: string }
+
+type CreateResponseChoiceLogProbs =
+    { Tokens: string list
+      [<JsonPropertyName("token_logprobs")>]
+      tokenLogProbs: float list
+      [<JsonPropertyName("top_logprobs")>]
+      topLogProbs: (int * string) list option
+      [<JsonPropertyName("text_offset")>]
+      textOffset: int list }
+
+type Choice = { Text: string; Index: int }
+
+type CreateResponseUsage =
+    { [<JsonPropertyName("prompt_tokens")>]
+      PromptTokens: int
+      [<JsonPropertyName("completion_tokens")>]
+      CompletionTokens: int option
+      [<JsonPropertyName("total_tokens")>]
+      TotalTokens: int }
+
+type CreateResponse =
+    { Object: string
+      Created: int
       Choices: Choice[]
       Usage: CreateResponseUsage }

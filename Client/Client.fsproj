@@ -11,6 +11,7 @@
         <Compile Include="HttpRequester.fs" />
         <Compile Include="Models.fs" />
         <Compile Include="Completions.fs" />
+        <Compile Include="Edits.fs" />
         <Compile Include="OpenAI.fs" />
     </ItemGroup>
 

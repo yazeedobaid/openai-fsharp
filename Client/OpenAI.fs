@@ -2,6 +2,7 @@
 
 open OpenAI.Models
 open OpenAI.Completions
+open OpenAI.Edits
 
 type OpenAIComputed() =
     // Required - creates default "starting" values
@@ -32,18 +33,28 @@ type OpenAIComputed() =
     [<CustomOperation "list">]
     // Models List Endpoint
     member _.List(config: Config) : ListModelsResponse = list config
-    
+
     [<CustomOperation "retrieve">]
     // Models List Endpoint
     member _.Retrieve(config: Config, modelName: string) : ModelResponse = retrieve modelName config
 
     [<CustomOperation "completions">]
     // Start OpenAI Completions resource handling
-    member _.Completions(config: Config) = completions config
+    member _.Completions(config: Config) = Completions.completions config
 
     [<CustomOperation "create">]
     // Completions Create Endpoint
-    member _.Create(config: Config, request: CreateRequest) : CreateResponse = create request config
+    member _.Create(config: Config, request: Completions.CreateRequest) : Completions.CreateResponse =
+        Completions.create request config
+
+    [<CustomOperation "edits">]
+    // Start OpenAI Edits resource handling
+    member _.Edits(config: Config) = edits config
+
+    [<CustomOperation "create">]
+    // Edits Create Endpoint
+    member _.Create(config: Config, request: Edits.CreateRequest) : Edits.CreateResponse =
+        Edits.create request config
 
 
 module Client =
