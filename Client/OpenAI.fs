@@ -1,5 +1,6 @@
 ﻿namespace OpenAI
 
+open OpenAI.Models
 open OpenAI.Completions
 
 type OpenAIComputed() =
@@ -10,27 +11,39 @@ type OpenAIComputed() =
 
     [<CustomOperation "endPoint">]
     // Sets OpenAI end point
-    member _.EndPoint(state: Config, endPoint: string) =
-        { state with
+    member _.EndPoint(config: Config, endPoint: string) =
+        { config with
             ApiConfig =
                 { Endpoint = endPoint
-                  ApiKey = state.ApiConfig.ApiKey } }
+                  ApiKey = config.ApiConfig.ApiKey } }
 
     [<CustomOperation "apiKey">]
     // Sets OpenAI API Key
-    member _.ApiKey(state: Config, apiKey: string) =
-        { state with
+    member _.ApiKey(config: Config, apiKey: string) =
+        { config with
             ApiConfig =
-                { Endpoint = state.ApiConfig.Endpoint
+                { Endpoint = config.ApiConfig.Endpoint
                   ApiKey = apiKey } }
+
+    [<CustomOperation "models">]
+    // Start OpenAI Models resource handling
+    member _.Models(config: Config) = models config
+
+    [<CustomOperation "list">]
+    // Models List Endpoint
+    member _.List(config: Config) : ListModelsResponse = list config
+    
+    [<CustomOperation "retrieve">]
+    // Models List Endpoint
+    member _.Retrieve(config: Config, modelName: string) : ModelResponse = retrieve modelName config
 
     [<CustomOperation "completions">]
     // Start OpenAI Completions resource handling
-    member _.Completions(state: Config) = completions state
+    member _.Completions(config: Config) = completions config
 
     [<CustomOperation "create">]
-    // Start OpenAI Completions resource handling
-    member _.Create(state: Config, request: CreateRequest) = create request state
+    // Completions Create Endpoint
+    member _.Create(config: Config, request: CreateRequest) : CreateResponse = create request config
 
 
 module Client =

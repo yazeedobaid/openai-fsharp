@@ -5,9 +5,6 @@ open OpenAI.Client
 open OpenAI.Completions
 open Tests.Helpers
 open Expecto
-open Suave
-open Suave.Operators
-open Suave.Filters
 open Tests.Fixtures.Completions
 
 [<Tests>]
@@ -17,8 +14,6 @@ let tests =
         [ test "completions create test" {
               let response = createCompletionResponse ()
               let responseObject = serialize<CreateResponse> response
-
-              use _ = POST >=> request (fun _ -> response |> Successful.OK) |> serve
 
               let client =
                   { ApiConfig = { ApiKey = "apiKey"; Endpoint = url "" }
@@ -35,11 +30,10 @@ let tests =
 
               Expect.equal response responseObject ""
           }
+
           test "completions create test using computation expression" {
               let response = createCompletionResponse ()
               let responseObject = serialize<CreateResponse> response
-
-              use _ = POST >=> request (fun _ -> response |> Successful.OK) |> serve
 
               let response =
                   openAI {

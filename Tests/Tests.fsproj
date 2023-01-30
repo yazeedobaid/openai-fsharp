@@ -9,8 +9,10 @@
 
   <ItemGroup>
     <Compile Include="Sample.fs" />
+    <Compile Include="Fixtures\Models.fs" />
     <Compile Include="Fixtures\Completions.fs" />
     <Compile Include="Helpers.fs" />
+    <Compile Include="Models.fs" />
     <Compile Include="Completions.fs" />
     <Compile Include="Main.fs" />
   </ItemGroup>

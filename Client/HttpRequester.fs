@@ -16,3 +16,13 @@ type HttpRequester() =
             }
             |> Request.send
             |> Response.deserializeJson<'R>
+
+        member this.sendRequestGet<'R>(config: ApiConfig) =
+            http {
+                GET config.Endpoint
+                AuthorizationBearer config.ApiKey
+                Accept "application/json"
+                CacheControl "no-cache"
+            }
+            |> Request.send
+            |> Response.deserializeJson<'R>
