@@ -2,10 +2,6 @@
 
 open FsHttp
 
-type IHttpRequester =
-    abstract member sendRequest<'T, 'R> : config: ApiConfig -> data: 'T -> 'R
-
-
 type HttpRequester() =
     interface IHttpRequester with
         member this.sendRequest<'T, 'R> (config: ApiConfig) (data: 'T) =

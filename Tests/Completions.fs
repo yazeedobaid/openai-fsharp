@@ -1,7 +1,6 @@
 module Tests.Completions
 
 open OpenAI
-open OpenAI.Client
 open OpenAI.Completions
 open Tests.Helpers
 open Expecto
