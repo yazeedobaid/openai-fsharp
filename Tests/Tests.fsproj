@@ -13,6 +13,7 @@
     <Compile Include="Fixtures\Completions.fs" />
     <Compile Include="Fixtures\Edits.fs" />
     <Compile Include="Fixtures\Images.fs" />
+    <Compile Include="Fixtures\Embeddings.fs" />
     <Content Include="Fixtures\sample-image.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -21,6 +22,7 @@
     <Compile Include="Completions.fs" />
     <Compile Include="Edits.fs" />
     <Compile Include="Images.fs" />
+    <Compile Include="Embeddings.fs" />
     <Compile Include="Main.fs" />
   </ItemGroup>
 

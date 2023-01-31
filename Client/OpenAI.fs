@@ -75,6 +75,14 @@ type OpenAIComputed() =
     member _.Variation(config: Config, request: Images.VariationRequest) : Images.VariationResponse =
         Images.variation request config
 
+    [<CustomOperation "embeddings">]
+    // Start OpenAI Embeddings resource handling
+    member _.Embeddings(config: Config) = Embeddings.embeddings config
+
+    [<CustomOperation "create">]
+    // Embeddings Create Endpoint
+    member _.Create(config: Config, request: Embeddings.CreateRequest) : Embeddings.CreateResponse =
+        Embeddings.create request config
 
 module Client =
     let sendRequest (config: Config) (data: (string * string) list) =

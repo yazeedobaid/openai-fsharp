@@ -4,6 +4,7 @@ open Tests.Fixtures.Models
 open Tests.Fixtures.Completions
 open Tests.Fixtures.Edits
 open Tests.Fixtures.Images
+open Tests.Fixtures.Embeddings
 open Tests.Helpers
 open Suave
 open Suave.Operators
@@ -21,6 +22,7 @@ let main argv =
             POST >=> path "/images/generations" >=> request (fun _ -> createImageResponse () |> Successful.OK)
             POST >=> path "/images/edits" >=> request (fun _ -> editImageResponse () |> Successful.OK)
             POST >=> path "/images/variations" >=> request (fun _ -> variationImageResponse () |> Successful.OK)
+            POST >=> path "/embeddings" >=> request (fun _ -> createEmbeddingResponse () |> Successful.OK)
         ]
         |> serve
 
