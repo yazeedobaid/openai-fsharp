@@ -3,6 +3,7 @@
 open Tests.Fixtures.Models
 open Tests.Fixtures.Completions
 open Tests.Fixtures.Edits
+open Tests.Fixtures.Images
 open Tests.Helpers
 open Suave
 open Suave.Operators
@@ -17,6 +18,9 @@ let main argv =
             GET >=> pathScan "/models/%s" (fun _ -> request (fun _ -> retrieveModelResponse () |> Successful.OK))
             POST >=> path "/completions" >=> request (fun _ -> createCompletionResponse () |> Successful.OK)
             POST >=> path "/edits" >=> request (fun _ -> createEditResponse () |> Successful.OK)
+            POST >=> path "/images/generations" >=> request (fun _ -> createImageResponse () |> Successful.OK)
+            POST >=> path "/images/edits" >=> request (fun _ -> editImageResponse () |> Successful.OK)
+            POST >=> path "/images/variations" >=> request (fun _ -> variationImageResponse () |> Successful.OK)
         ]
         |> serve
 

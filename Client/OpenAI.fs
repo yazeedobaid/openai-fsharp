@@ -1,8 +1,10 @@
 ﻿namespace OpenAI
 
+open OpenAI
 open OpenAI.Models
 open OpenAI.Completions
 open OpenAI.Edits
+open OpenAI.Images
 
 type OpenAIComputed() =
     // Required - creates default "starting" values
@@ -40,7 +42,7 @@ type OpenAIComputed() =
 
     [<CustomOperation "completions">]
     // Start OpenAI Completions resource handling
-    member _.Completions(config: Config) = Completions.completions config
+    member _.Completions(config: Config) = completions config
 
     [<CustomOperation "create">]
     // Completions Create Endpoint
@@ -53,8 +55,25 @@ type OpenAIComputed() =
 
     [<CustomOperation "create">]
     // Edits Create Endpoint
-    member _.Create(config: Config, request: Edits.CreateRequest) : Edits.CreateResponse =
-        Edits.create request config
+    member _.Create(config: Config, request: Edits.CreateRequest) : Edits.CreateResponse = Edits.create request config
+
+    [<CustomOperation "images">]
+    // Start OpenAI Images resource handling
+    member _.Images(config: Config) = images config
+
+    [<CustomOperation "create">]
+    // Images Create Endpoint
+    member _.Create(config: Config, request: Images.CreateRequest) : Images.CreateResponse =
+        Images.create request config
+
+    [<CustomOperation "edit">]
+    // Images Edit Endpoint
+    member _.Edit(config: Config, request: Images.EditRequest) : Images.EditResponse = Images.edit request config
+
+    [<CustomOperation "variation">]
+    // Images Edit Endpoint
+    member _.Variation(config: Config, request: Images.VariationRequest) : Images.VariationResponse =
+        Images.variation request config
 
 
 module Client =

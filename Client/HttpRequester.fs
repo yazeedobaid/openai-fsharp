@@ -17,6 +17,17 @@ type HttpRequester() =
             |> Request.send
             |> Response.deserializeJson<'R>
 
+        member this.PrepareRequestForMultiPart(config: ApiConfig) =
+            http {
+                POST config.Endpoint
+                AuthorizationBearer config.ApiKey
+                Accept "application/json"
+                CacheControl "no-cache"
+            }
+
+        member this.sendRequestMultiPart<'R>(httpRequest: MultipartContext) =
+            httpRequest |> Request.send |> Response.deserializeJson<'R>
+
         member this.sendRequestGet<'R>(config: ApiConfig) =
             http {
                 GET config.Endpoint
