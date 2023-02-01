@@ -84,6 +84,15 @@ type OpenAIComputed() =
     member _.Create(config: Config, request: Embeddings.CreateRequest) : Embeddings.CreateResponse =
         Embeddings.create request config
 
+    [<CustomOperation "moderations">]
+    // Start OpenAI Moderations resource handling
+    member _.Moderations(config: Config) = Moderations.moderations config
+
+    [<CustomOperation "create">]
+    // Moderations Create Endpoint
+    member _.Create(config: Config, request: Moderations.CreateRequest) : Moderations.CreateResponse =
+        Moderations.create request config
+
 module Client =
     let sendRequest (config: Config) (data: (string * string) list) =
         config.HttpRequester.sendRequest config.ApiConfig data
