@@ -41,20 +41,24 @@ module Images =
     type VariationResponse = { Created: int; Data: Data[] }
 
 
-    let images (config: Config) : Config =
-        { config with ApiConfig = { config.ApiConfig with Endpoint = Url.combine config.ApiConfig.Endpoint "/images" } }
+    let images (config: Config) : ConfigWithImageContext =
+        ConfigWithImageContext(
+            { config.ApiConfig with Endpoint = Url.combine config.ApiConfig.Endpoint "/images" },
+            config.HttpRequester
+        )
 
-    let create (request: CreateRequest) (config: Config) : CreateResponse =
+    let create (request: CreateRequest) (config: ConfigWithImageContext) : CreateResponse =
         let apiConfig =
             { config.ApiConfig with Endpoint = Url.combine config.ApiConfig.Endpoint "/generations" }
 
-        config.HttpRequester.sendRequest<CreateRequest, CreateResponse> apiConfig request
+        config.HttpRequester.postRequest<CreateRequest, CreateResponse> apiConfig request
 
-    let edit (request: EditRequest) (config: Config) : EditResponse =
+    let edit (request: EditRequest) (config: ConfigWithImageContext) : EditResponse =
         let apiConfig =
             { config.ApiConfig with Endpoint = Url.combine config.ApiConfig.Endpoint "/edits" }
-        
-        let httpRequest = config.HttpRequester.PrepareRequestForMultiPart apiConfig {
+
+        let httpRequest =
+            config.HttpRequester.PrepareRequestForMultiPart apiConfig {
                 multipart
                 filePartWithName "image" request.Image
                 filePartWithName "mask" request.Mask
@@ -62,20 +66,21 @@ module Images =
                 stringPart "n" (request.N.ToString())
                 stringPart "size" request.Size
                 stringPart "response_format" request.responseFormat
-        }
-        
-        config.HttpRequester.sendRequestMultiPart<EditResponse> httpRequest
+            }
 
-    let variation (request: VariationRequest) (config: Config) : VariationResponse =
+        config.HttpRequester.postRequestMultiPart<EditResponse> httpRequest
+
+    let variation (request: VariationRequest) (config: ConfigWithImageContext) : VariationResponse =
         let apiConfig =
             { config.ApiConfig with Endpoint = Url.combine config.ApiConfig.Endpoint "/variations" }
 
-        let httpRequest = config.HttpRequester.PrepareRequestForMultiPart apiConfig {
+        let httpRequest =
+            config.HttpRequester.PrepareRequestForMultiPart apiConfig {
                 multipart
                 filePartWithName "image" request.Image
                 stringPart "n" (request.N.ToString())
                 stringPart "size" request.Size
                 stringPart "response_format" request.responseFormat
-        }
-        
-        config.HttpRequester.sendRequestMultiPart<VariationResponse> httpRequest
+            }
+
+        config.HttpRequester.postRequestMultiPart<VariationResponse> httpRequest

@@ -45,9 +45,11 @@ module Moderations =
           results: Result[] }
 
 
-    let moderations (config: Config) : Config =
-        { config with
-            ApiConfig = { config.ApiConfig with Endpoint = Url.combine config.ApiConfig.Endpoint "/moderations" } }
+    let moderations (config: Config) : ConfigWithModerationContext =
+        ConfigWithModerationContext(
+            { config.ApiConfig with Endpoint = Url.combine config.ApiConfig.Endpoint "/moderations" },
+            config.HttpRequester
+        )
 
-    let create (request: CreateRequest) (config: Config) : CreateResponse =
-        config.HttpRequester.sendRequest<CreateRequest, CreateResponse> config.ApiConfig request
+    let create (request: CreateRequest) (config: ConfigWithModerationContext) : CreateResponse =
+        config.HttpRequester.postRequest<CreateRequest, CreateResponse> config.ApiConfig request

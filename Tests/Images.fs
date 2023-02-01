@@ -15,9 +15,7 @@ let tests =
               let response = createImageResponse ()
               let responseObject = serialize<CreateResponse> response
 
-              let client =
-                  { ApiConfig = { ApiKey = "apiKey"; Endpoint = url "" }
-                    HttpRequester = HttpRequester() }
+              let client = Config({ ApiKey = "apiKey"; Endpoint = url "" }, HttpRequester())
 
               let response =
                   client
@@ -54,9 +52,7 @@ let tests =
               let response = editImageResponse ()
               let responseObject = serialize<EditResponse> response
 
-              let client =
-                  { ApiConfig = { ApiKey = "apiKey"; Endpoint = url "" }
-                    HttpRequester = HttpRequester() }
+              let client = Config({ ApiKey = "apiKey"; Endpoint = url "" }, HttpRequester())
 
               let response =
                   client
@@ -97,9 +93,7 @@ let tests =
               let response = variationImageResponse ()
               let responseObject = serialize<VariationResponse> response
 
-              let client =
-                  { ApiConfig = { ApiKey = "apiKey"; Endpoint = url "" }
-                    HttpRequester = HttpRequester() }
+              let client = Config({ ApiKey = "apiKey"; Endpoint = url "" }, HttpRequester())
 
               let response =
                   client

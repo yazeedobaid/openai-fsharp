@@ -40,12 +40,15 @@ module Models =
         { Object: string
           Data: ModelResponse[] }
 
-    let models (config: Config) : Config =
-        { config with ApiConfig = { config.ApiConfig with Endpoint = Url.combine config.ApiConfig.Endpoint "/models" } }
+    let models (config: Config) : ConfigWithModelContext =
+        ConfigWithModelContext(
+            { config.ApiConfig with Endpoint = Url.combine config.ApiConfig.Endpoint "/models" },
+            config.HttpRequester
+        )
 
-    let list (config: Config) : ListModelsResponse =
-        config.HttpRequester.sendRequestGet<ListModelsResponse> config.ApiConfig
+    let list (config: ConfigWithModelContext) : ListModelsResponse =
+        config.HttpRequester.getRequest<ListModelsResponse> config.ApiConfig
 
-    let retrieve (modelName: string) (config: Config) : ModelResponse =
+    let retrieve (modelName: string) (config: ConfigWithModelContext) : ModelResponse =
         { config.ApiConfig with Endpoint = Url.combine config.ApiConfig.Endpoint modelName }
-        |> config.HttpRequester.sendRequestGet<ModelResponse>
+        |> config.HttpRequester.getRequest<ModelResponse>

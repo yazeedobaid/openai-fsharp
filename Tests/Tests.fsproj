@@ -8,14 +8,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="Sample.fs" />
     <Compile Include="Fixtures\Models.fs" />
     <Compile Include="Fixtures\Completions.fs" />
     <Compile Include="Fixtures\Edits.fs" />
     <Compile Include="Fixtures\Images.fs" />
     <Compile Include="Fixtures\Embeddings.fs" />
     <Compile Include="Fixtures\Moderations.fs" />
+    <Compile Include="Fixtures\Files.fs" />
     <Content Include="Fixtures\sample-image.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Fixtures\sample-json.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Compile Include="Helpers.fs" />
@@ -25,6 +28,7 @@
     <Compile Include="Images.fs" />
     <Compile Include="Embeddings.fs" />
     <Compile Include="Moderations.fs" />
+    <Compile Include="Files.fs" />
     <Compile Include="Main.fs" />
   </ItemGroup>
 

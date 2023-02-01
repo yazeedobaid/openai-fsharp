@@ -43,9 +43,11 @@ module Completions =
           Choices: Choice[]
           Usage: Usage }
 
-    let completions (config: Config) : Config =
-        { config with
-            ApiConfig = { config.ApiConfig with Endpoint = Url.combine config.ApiConfig.Endpoint "/completions" } }
+    let completions (config: Config) : ConfigWithCompletionContext =
+        ConfigWithCompletionContext(
+            { config.ApiConfig with Endpoint = Url.combine config.ApiConfig.Endpoint "/completions" },
+            config.HttpRequester
+        )
 
-    let create (request: CreateRequest) (config: Config) : CreateResponse =
-        config.HttpRequester.sendRequest<CreateRequest, CreateResponse> config.ApiConfig request
+    let create (request: CreateRequest) (config: ConfigWithCompletionContext) : CreateResponse =
+        config.HttpRequester.postRequest<CreateRequest, CreateResponse> config.ApiConfig request

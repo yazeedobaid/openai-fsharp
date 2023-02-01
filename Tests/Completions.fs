@@ -15,9 +15,7 @@ let tests =
               let response = createCompletionResponse ()
               let responseObject = serialize<CreateResponse> response
 
-              let client =
-                  { ApiConfig = { ApiKey = "apiKey"; Endpoint = url "" }
-                    HttpRequester = HttpRequester() }
+              let client = Config({ ApiKey = "apiKey"; Endpoint = url "" }, HttpRequester())
 
               let response =
                   client
@@ -40,7 +38,6 @@ let tests =
                       endPoint (url "")
                       apiKey "apiKey"
                       completions
-
                       create
                           { Model = "text-davinci-003"
                             Prompt = "the earth has a shape of"

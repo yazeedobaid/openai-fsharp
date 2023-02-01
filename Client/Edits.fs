@@ -26,8 +26,11 @@ module Edits =
           Choices: Choice[]
           Usage: Usage }
 
-    let edits (config: Config) : Config =
-        { config with ApiConfig = { config.ApiConfig with Endpoint = Url.combine config.ApiConfig.Endpoint "/edits" } }
+    let edits (config: Config) : ConfigWithEditContext =
+        ConfigWithEditContext(
+            { config.ApiConfig with Endpoint = Url.combine config.ApiConfig.Endpoint "/edits" },
+            config.HttpRequester
+        )
 
-    let create (request: CreateRequest) (config: Config) : CreateResponse =
-        config.HttpRequester.sendRequest<CreateRequest, CreateResponse> config.ApiConfig request
+    let create (request: CreateRequest) (config: ConfigWithEditContext) : CreateResponse =
+        config.HttpRequester.postRequest<CreateRequest, CreateResponse> config.ApiConfig request

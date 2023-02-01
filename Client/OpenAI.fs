@@ -5,28 +5,30 @@ open OpenAI.Models
 open OpenAI.Completions
 open OpenAI.Edits
 open OpenAI.Images
+open OpenAI.Files
 
 type OpenAIComputed() =
     // Required - creates default "starting" values
     member _.Yield _ =
-        { ApiConfig = { Endpoint = ""; ApiKey = "" }
-          HttpRequester = HttpRequester() }
+        Config({ Endpoint = ""; ApiKey = "" }, HttpRequester())
 
     [<CustomOperation "endPoint">]
     // Sets OpenAI end point
     member _.EndPoint(config: Config, endPoint: string) =
-        { config with
-            ApiConfig =
-                { Endpoint = endPoint
-                  ApiKey = config.ApiConfig.ApiKey } }
+        Config(
+            { Endpoint = endPoint
+              ApiKey = config.ApiConfig.ApiKey },
+            config.HttpRequester
+        )
 
     [<CustomOperation "apiKey">]
     // Sets OpenAI API Key
     member _.ApiKey(config: Config, apiKey: string) =
-        { config with
-            ApiConfig =
-                { Endpoint = config.ApiConfig.Endpoint
-                  ApiKey = apiKey } }
+        Config(
+            { Endpoint = config.ApiConfig.Endpoint
+              ApiKey = apiKey },
+            config.HttpRequester
+        )
 
     [<CustomOperation "models">]
     // Start OpenAI Models resource handling
@@ -34,11 +36,12 @@ type OpenAIComputed() =
 
     [<CustomOperation "list">]
     // Models List Endpoint
-    member _.List(config: Config) : ListModelsResponse = list config
+    member _.List(config: ConfigWithModelContext) : Models.ListModelsResponse = Models.list config
 
     [<CustomOperation "retrieve">]
     // Models List Endpoint
-    member _.Retrieve(config: Config, modelName: string) : ModelResponse = retrieve modelName config
+    member _.Retrieve(config: ConfigWithModelContext, modelName: string) : Models.ModelResponse =
+        Models.retrieve modelName config
 
     [<CustomOperation "completions">]
     // Start OpenAI Completions resource handling
@@ -46,7 +49,11 @@ type OpenAIComputed() =
 
     [<CustomOperation "create">]
     // Completions Create Endpoint
-    member _.Create(config: Config, request: Completions.CreateRequest) : Completions.CreateResponse =
+    member _.Create
+        (
+            config: ConfigWithCompletionContext,
+            request: Completions.CreateRequest
+        ) : Completions.CreateResponse =
         Completions.create request config
 
     [<CustomOperation "edits">]
@@ -55,7 +62,8 @@ type OpenAIComputed() =
 
     [<CustomOperation "create">]
     // Edits Create Endpoint
-    member _.Create(config: Config, request: Edits.CreateRequest) : Edits.CreateResponse = Edits.create request config
+    member _.Create(config: ConfigWithEditContext, request: Edits.CreateRequest) : Edits.CreateResponse =
+        Edits.create request config
 
     [<CustomOperation "images">]
     // Start OpenAI Images resource handling
@@ -63,16 +71,17 @@ type OpenAIComputed() =
 
     [<CustomOperation "create">]
     // Images Create Endpoint
-    member _.Create(config: Config, request: Images.CreateRequest) : Images.CreateResponse =
+    member _.Create(config: ConfigWithImageContext, request: Images.CreateRequest) : Images.CreateResponse =
         Images.create request config
 
     [<CustomOperation "edit">]
     // Images Edit Endpoint
-    member _.Edit(config: Config, request: Images.EditRequest) : Images.EditResponse = Images.edit request config
+    member _.Edit(config: ConfigWithImageContext, request: Images.EditRequest) : Images.EditResponse =
+        Images.edit request config
 
     [<CustomOperation "variation">]
     // Images Edit Endpoint
-    member _.Variation(config: Config, request: Images.VariationRequest) : Images.VariationResponse =
+    member _.Variation(config: ConfigWithImageContext, request: Images.VariationRequest) : Images.VariationResponse =
         Images.variation request config
 
     [<CustomOperation "embeddings">]
@@ -81,7 +90,7 @@ type OpenAIComputed() =
 
     [<CustomOperation "create">]
     // Embeddings Create Endpoint
-    member _.Create(config: Config, request: Embeddings.CreateRequest) : Embeddings.CreateResponse =
+    member _.Create(config: ConfigWithEmbeddingContext, request: Embeddings.CreateRequest) : Embeddings.CreateResponse =
         Embeddings.create request config
 
     [<CustomOperation "moderations">]
@@ -90,11 +99,40 @@ type OpenAIComputed() =
 
     [<CustomOperation "create">]
     // Moderations Create Endpoint
-    member _.Create(config: Config, request: Moderations.CreateRequest) : Moderations.CreateResponse =
+    member _.Create
+        (
+            config: ConfigWithModerationContext,
+            request: Moderations.CreateRequest
+        ) : Moderations.CreateResponse =
         Moderations.create request config
+
+    [<CustomOperation "files">]
+    // Start OpenAI Files resource handling
+    member _.Files(config: Config) = Files.files config
+
+    [<CustomOperation "list">]
+    // Files List Endpoint
+    member _.List(config: ConfigWithFileContext) : Files.ListResponse = Files.list config
+
+    [<CustomOperation "upload">]
+    // Files Upload Endpoint
+    member _.Upload(config: ConfigWithFileContext, request: Files.UploadRequest) : Files.File =
+        Files.upload request config
+
+    [<CustomOperation "delete">]
+    // Files Delete Endpoint
+    member _.Delete(config: ConfigWithFileContext, fileId: string) : Files.DeleteResponse = Files.delete fileId config
+
+    [<CustomOperation "retrieve">]
+    // Files Retrieve Endpoint
+    member _.Retrieve(config: ConfigWithFileContext, fileId: string) : Files.File = Files.retrieve fileId config
+
+    [<CustomOperation "download">]
+    // Files Download Endpoint
+    member _.Download(config: ConfigWithFileContext, fileId: string) : string = Files.download fileId config
 
 module Client =
     let sendRequest (config: Config) (data: (string * string) list) =
-        config.HttpRequester.sendRequest config.ApiConfig data
+        config.HttpRequester.postRequest config.ApiConfig data
 
     let openAI = OpenAIComputed()

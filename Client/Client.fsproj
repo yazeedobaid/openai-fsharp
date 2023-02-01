@@ -15,6 +15,7 @@
         <Compile Include="Images.fs" />
         <Compile Include="Embeddings.fs" />
         <Compile Include="Moderations.fs" />
+        <Compile Include="Files.fs" />
         <Compile Include="OpenAI.fs" />
     </ItemGroup>
 

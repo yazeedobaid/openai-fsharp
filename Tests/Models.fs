@@ -15,9 +15,7 @@ let tests =
               let response = listModelsResponse ()
               let responseObject = serialize<ListModelsResponse> response
 
-              let client =
-                  { ApiConfig = { ApiKey = "apiKey"; Endpoint = url "" }
-                    HttpRequester = HttpRequester() }
+              let client = Config({ ApiKey = "apiKey"; Endpoint = url "" }, HttpRequester())
 
               let response = client |> models |> list
 
@@ -43,9 +41,7 @@ let tests =
               let response = retrieveModelResponse ()
               let responseObject = serialize<ModelResponse> response
 
-              let client =
-                  { ApiConfig = { ApiKey = "apiKey"; Endpoint = url "" }
-                    HttpRequester = HttpRequester() }
+              let client = Config({ ApiKey = "apiKey"; Endpoint = url "" }, HttpRequester())
 
               let response = client |> models |> retrieve "text-davinci-003"
 

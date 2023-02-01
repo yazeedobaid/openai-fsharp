@@ -1,11 +1,13 @@
 ﻿module test
 
+open System.IO
 open Tests.Fixtures.Models
 open Tests.Fixtures.Completions
 open Tests.Fixtures.Edits
 open Tests.Fixtures.Images
 open Tests.Fixtures.Embeddings
 open Tests.Fixtures.Moderations
+open Tests.Fixtures.Files
 open Tests.Helpers
 open Suave
 open Suave.Operators
@@ -25,6 +27,11 @@ let main argv =
             POST >=> path "/images/variations" >=> request (fun _ -> variationImageResponse () |> Successful.OK)
             POST >=> path "/embeddings" >=> request (fun _ -> createEmbeddingResponse () |> Successful.OK)
             POST >=> path "/moderations" >=> request (fun _ -> createModerationResponse () |> Successful.OK)
+            GET >=> path "/files" >=> request (fun _ -> listFilesResponse () |> Successful.OK)
+            POST >=> path "/files" >=> request (fun _ -> uploadFileResponse () |> Successful.OK)
+            DELETE >=> pathScan "/files/%s" (fun _ -> request (fun _ -> deleteFileResponse () |> Successful.OK))
+            GET >=> pathScan "/files/%s/content" (fun _ -> request (fun _ -> File.ReadAllText @"Fixtures/sample-json.txt" |> Successful.OK))
+            GET >=> pathScan "/files/%s" (fun _ -> request (fun _ -> retrieveFileResponse () |> Successful.OK))
         ]
         |> serve
 
