@@ -4,3 +4,6 @@ obj/
 riderModule.iml
 /_ReSharper.Caches/
 /.idea/
+/out/
+/paket-files/
+/.paket/

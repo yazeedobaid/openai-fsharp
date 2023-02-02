@@ -1,0 +1,23 @@
+﻿<Project>
+    <PropertyGroup>
+        <SourceRoot>$(MSBuildThisFileDirectory)</SourceRoot>
+    </PropertyGroup>
+    <ItemGroup>
+        <None Include="$(MSBuildThisFileDirectory)art/logo.png" Pack="true" PackagePath="\"/>
+        <None Include="$(MSBuildThisFileDirectory)README.md" Pack="true" PackagePath="\"/>
+    </ItemGroup>
+    <PropertyGroup>
+        <DebugType>embedded</DebugType>
+        <!-- package metadata -->
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <Description>OpenAI - F# - is library that allows you to interact with OpenAI API in an easy, fluent, and typed way!</Description>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageProjectUrl>https://github.com/yazeedobaid/openai-fsharp</PackageProjectUrl>
+        <PackageIcon>logo.png</PackageIcon>
+        <RepositoryUrl>https://github.com/yazeedobaid/openai-fsharp</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageTags>openAI;Api;f#</PackageTags>
+        <Authors>Yazeed Obaid</Authors>
+        <SourceLinkCreate>false</SourceLinkCreate>
+    </PropertyGroup>
+</Project>

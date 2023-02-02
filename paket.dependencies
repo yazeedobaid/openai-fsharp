@@ -1,0 +1,13 @@
+source https://api.nuget.org/v3/index.json
+
+nuget Expecto >= 9.0
+nuget Fake.Api.GitHub
+nuget Fake.Core.ReleaseNotes
+nuget Fake.Core.Target
+nuget Fake.DotNet.Cli
+nuget Fake.DotNet.Paket
+nuget FSharp.Core 7.0.0
+nuget FsHttp 10.0.0
+nuget Microsoft.NET.Test.Sdk >= 17.0
+nuget Suave 2.6.2
+nuget YoloDev.Expecto.TestSdk

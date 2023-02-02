@@ -1,27 +1,22 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
-    <PropertyGroup>
-        <TargetFramework>net7.0</TargetFramework>
-        <GenerateDocumentationFile>true</GenerateDocumentationFile>
-        <RootNamespace>client</RootNamespace>
-    </PropertyGroup>
-
-    <ItemGroup>
-        <Compile Include="Types.fs" />
-        <Compile Include="HttpRequester.fs" />
-        <Compile Include="Models.fs" />
-        <Compile Include="Completions.fs" />
-        <Compile Include="Edits.fs" />
-        <Compile Include="Images.fs" />
-        <Compile Include="Embeddings.fs" />
-        <Compile Include="Moderations.fs" />
-        <Compile Include="Files.fs" />
-        <Compile Include="FineTunes.fs" />
-        <Compile Include="OpenAI.fs" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <PackageReference Include="FsHttp" Version="10.0.0" />
-    </ItemGroup>
-
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <RootNamespace>client</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Types.fs" />
+    <Compile Include="HttpRequester.fs" />
+    <Compile Include="Models.fs" />
+    <Compile Include="Completions.fs" />
+    <Compile Include="Edits.fs" />
+    <Compile Include="Images.fs" />
+    <Compile Include="Embeddings.fs" />
+    <Compile Include="Moderations.fs" />
+    <Compile Include="Files.fs" />
+    <Compile Include="FineTunes.fs" />
+    <Compile Include="OpenAI.fs" />
+  </ItemGroup>
+  <Import Project="..\.paket\Paket.Restore.targets" />
 </Project>
