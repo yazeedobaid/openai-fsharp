@@ -87,7 +87,7 @@ let githubRelease () =
     |> GitHub.draftNewRelease
         gitHubOwner
         gitHubRepoName
-        (changelog.LatestEntry.NuGetVersion.ToString())
+        tag
         (changelog.LatestEntry.SemVer.PreRelease <> None)
         (releaseNotes |> Seq.singleton)
     |> GitHub.uploadFiles !!(outputDirectory </> "*.nupkg")
