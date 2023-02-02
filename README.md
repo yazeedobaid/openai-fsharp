@@ -1,4 +1,7 @@
-﻿
+﻿<p align="center">
+    <img src="https://raw.githubusercontent.com/yazeedobaid/openai-fsharp/main/art/example-snippet.png" alt="OpenAI F#">
+</p>
+
 ------
 **OpenAI F#** is library that allows you to interact with [Open AI API](https://beta.openai.com/docs/api-reference/introduction) in an easy,
 fluent, and typed way!
