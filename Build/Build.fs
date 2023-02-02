@@ -104,7 +104,7 @@ let nuGetPush () =
             ApiKey = nuGetToken.Value }
 
 let release _ =
-    //nuGetPush ()
+    nuGetPush ()
     githubRelease ()
 
 // --------------------------------------------- Targets ---------------------------------------------
