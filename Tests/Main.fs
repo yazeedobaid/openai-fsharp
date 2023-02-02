@@ -8,6 +8,7 @@ open Tests.Fixtures.Images
 open Tests.Fixtures.Embeddings
 open Tests.Fixtures.Moderations
 open Tests.Fixtures.Files
+open Tests.Fixtures.FineTunes
 open Tests.Helpers
 open Suave
 open Suave.Operators
@@ -20,6 +21,7 @@ let main argv =
         choose [
             GET >=> path "/models" >=> request (fun _ -> listModelsResponse () |> Successful.OK)
             GET >=> pathScan "/models/%s" (fun _ -> request (fun _ -> retrieveModelResponse () |> Successful.OK))
+            DELETE >=> pathScan "/models/%s" (fun _ -> request (fun _ -> deleteModelResponse () |> Successful.OK))
             POST >=> path "/completions" >=> request (fun _ -> createCompletionResponse () |> Successful.OK)
             POST >=> path "/edits" >=> request (fun _ -> createEditResponse () |> Successful.OK)
             POST >=> path "/images/generations" >=> request (fun _ -> createImageResponse () |> Successful.OK)
@@ -32,6 +34,11 @@ let main argv =
             DELETE >=> pathScan "/files/%s" (fun _ -> request (fun _ -> deleteFileResponse () |> Successful.OK))
             GET >=> pathScan "/files/%s/content" (fun _ -> request (fun _ -> File.ReadAllText @"Fixtures/sample-json.txt" |> Successful.OK))
             GET >=> pathScan "/files/%s" (fun _ -> request (fun _ -> retrieveFileResponse () |> Successful.OK))
+            POST >=> path "/fine-tunes" >=> request (fun _ -> createFineTuneResponse () |> Successful.OK)
+            GET >=> path "/fine-tunes" >=> request (fun _ -> listFineTunesResponse () |> Successful.OK)
+            GET >=> pathScan "/fine-tunes/%s/events" (fun _ -> request (fun _ -> listFineTuneEventsResponse () |> Successful.OK))
+            GET >=> pathScan "/fine-tunes/%s" (fun _ -> request (fun _ -> retrieveFineTuneResponse () |> Successful.OK))
+            POST >=> pathScan "/fine-tunes/%s/cancel" (fun _ -> request (fun _ -> cancelFineTuneResponse () |> Successful.OK))
         ]
         |> serve
 

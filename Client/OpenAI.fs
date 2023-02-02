@@ -6,6 +6,7 @@ open OpenAI.Completions
 open OpenAI.Edits
 open OpenAI.Images
 open OpenAI.Files
+open OpenAI.FineTunes
 
 type OpenAIComputed() =
     // Required - creates default "starting" values
@@ -42,6 +43,11 @@ type OpenAIComputed() =
     // Models List Endpoint
     member _.Retrieve(config: ConfigWithModelContext, modelName: string) : Models.ModelResponse =
         Models.retrieve modelName config
+
+    [<CustomOperation "delete">]
+    // Models Delete Endpoint
+    member _.Delete(config: ConfigWithModelContext, modelId: string) : Models.DeleteModelResponse =
+        Models.delete modelId config
 
     [<CustomOperation "completions">]
     // Start OpenAI Completions resource handling
@@ -116,7 +122,7 @@ type OpenAIComputed() =
 
     [<CustomOperation "upload">]
     // Files Upload Endpoint
-    member _.Upload(config: ConfigWithFileContext, request: Files.UploadRequest) : Files.File =
+    member _.Upload(config: ConfigWithFileContext, request: Files.UploadRequest) : Files.UploadFileResponse =
         Files.upload request config
 
     [<CustomOperation "delete">]
@@ -125,11 +131,40 @@ type OpenAIComputed() =
 
     [<CustomOperation "retrieve">]
     // Files Retrieve Endpoint
-    member _.Retrieve(config: ConfigWithFileContext, fileId: string) : Files.File = Files.retrieve fileId config
+    member _.Retrieve(config: ConfigWithFileContext, fileId: string) : Files.RetrieveFileResponse =
+        Files.retrieve fileId config
 
     [<CustomOperation "download">]
     // Files Download Endpoint
     member _.Download(config: ConfigWithFileContext, fileId: string) : string = Files.download fileId config
+
+    [<CustomOperation "fineTunes">]
+    // Start OpenAI Fine-Tunes resource handling
+    member _.FineTunes(config: Config) = FineTunes.fineTunes config
+
+    [<CustomOperation "create">]
+    // Fine-Tunes Create Endpoint
+    member _.Create(config: ConfigWithFineTuneContext, request: FineTunes.CreateRequest) : FineTunes.CreateResponse =
+        FineTunes.create request config
+
+    [<CustomOperation "list">]
+    // Fine-Tunes List Endpoint
+    member _.List(config: ConfigWithFineTuneContext) : FineTunes.ListResponse = FineTunes.list config
+
+    [<CustomOperation "retrieve">]
+    // Fine-Tunes Retrieve Endpoint
+    member _.Retrieve(config: ConfigWithFineTuneContext, fineTuneId: string) : FineTunes.RetrieveFineTuneResponse =
+        FineTunes.retrieve fineTuneId config
+
+    [<CustomOperation "cancel">]
+    // Fine-Tunes Cancel Endpoint
+    member _.Cancel(config: ConfigWithFineTuneContext, fineTuneId: string) : FineTunes.CancelFineTuneResponse =
+        FineTunes.cancel fineTuneId config
+
+    [<CustomOperation "listEvents">]
+    // Fine-Tunes Cancel Endpoint
+    member _.ListEvents(config: ConfigWithFineTuneContext, fineTuneId: string) : FineTunes.ListFineTuneEventsResponse =
+        FineTunes.listEvents fineTuneId config
 
 module Client =
     let sendRequest (config: Config) (data: (string * string) list) =

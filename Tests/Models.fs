@@ -61,4 +61,30 @@ let tests =
                   }
 
               Expect.equal response responseObject ""
+          }
+
+          test "model delete test" {
+              let response = deleteModelResponse ()
+              let responseObject = serialize<DeleteModelResponse> response
+
+              let client = Config({ ApiKey = "apiKey"; Endpoint = url "" }, HttpRequester())
+
+              let response = client |> models |> delete "text-davinci-003"
+
+              Expect.equal response responseObject ""
+          }
+
+          test "model delete using computation expression" {
+              let response = deleteModelResponse ()
+              let responseObject = serialize<DeleteModelResponse> response
+
+              let response =
+                  openAI {
+                      endPoint (url "")
+                      apiKey "apiKey"
+                      models
+                      delete "text-davinci-003"
+                  }
+
+              Expect.equal response responseObject ""
           } ]

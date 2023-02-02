@@ -16,6 +16,7 @@
         <Compile Include="Embeddings.fs" />
         <Compile Include="Moderations.fs" />
         <Compile Include="Files.fs" />
+        <Compile Include="FineTunes.fs" />
         <Compile Include="OpenAI.fs" />
     </ItemGroup>
 

@@ -40,7 +40,6 @@ module Images =
 
     type VariationResponse = { Created: int; Data: Data[] }
 
-
     let images (config: Config) : ConfigWithImageContext =
         ConfigWithImageContext(
             { config.ApiConfig with Endpoint = Url.combine config.ApiConfig.Endpoint "/images" },

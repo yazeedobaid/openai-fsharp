@@ -1,5 +1,6 @@
 ﻿namespace OpenAI
 
+open System.Text.Json
 open FsHttp
 
 type HttpRequester() =
@@ -13,6 +14,16 @@ type HttpRequester() =
                 body
                 ContentType "application/json"
                 jsonSerialize data
+            }
+            |> Request.send
+            |> Response.deserializeJson<'R>
+        
+        member this.postRequestEmpty<'R> (config: ApiConfig) =
+            http {
+                POST config.Endpoint
+                AuthorizationBearer config.ApiKey
+                Accept "application/json"
+                CacheControl "no-cache"
             }
             |> Request.send
             |> Response.deserializeJson<'R>

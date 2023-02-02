@@ -40,7 +40,7 @@ let tests =
 
           test "files upload test" {
               let response = uploadFileResponse ()
-              let responseObject = serialize<File> response
+              let responseObject = serialize<UploadFileResponse> response
 
               let client = Config({ ApiKey = "apiKey"; Endpoint = url "" }, HttpRequester())
 
@@ -56,7 +56,7 @@ let tests =
 
           test "files upload test using computation expression" {
               let response = uploadFileResponse ()
-              let responseObject = serialize<File> response
+              let responseObject = serialize<UploadFileResponse> response
 
               let response =
                   openAI {
@@ -99,7 +99,7 @@ let tests =
 
           test "files retrieve test" {
               let response = retrieveFileResponse ()
-              let responseObject = serialize<File> response
+              let responseObject = serialize<RetrieveFileResponse> response
 
               let client = Config({ ApiKey = "apiKey"; Endpoint = url "" }, HttpRequester())
 
@@ -110,7 +110,7 @@ let tests =
 
           test "files retrieve test using computation expression" {
               let response = retrieveFileResponse ()
-              let responseObject = serialize<File> response
+              let responseObject = serialize<RetrieveFileResponse> response
 
               let response =
                   openAI {
