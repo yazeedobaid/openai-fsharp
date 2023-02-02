@@ -1,5 +1,5 @@
 ﻿<p align="center">
-    <img src="https://raw.githubusercontent.com/yazeedobaid/openai-fsharp/main/art/example-snippet.png" alt="OpenAI F#">
+    <img src="https://raw.githubusercontent.com/yazeedobaid/openai-fsharp/main/art/example-snippet.png?token=GHSAT0AAAAAABQGBEGHNUW5IHPPAFRGHUTCY63WSLQ" alt="OpenAI F#">
 </p>
 
 ------
