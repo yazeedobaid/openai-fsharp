@@ -6,6 +6,7 @@ open Fake.IO.FileSystemOperators
 open Fake.IO.Globbing.Operators
 open Fake.DotNet
 open Fake.Api
+open Fake.Tools
 
 // ------------------------------------------- Definitions -------------------------------------------
 
@@ -77,7 +78,11 @@ let pack _ =
 
 let githubRelease () =
     let releaseNotes = changelog.LatestEntry.ToString()
+    let tag = changelog.LatestEntry.NuGetVersion.ToString()
 
+    Git.Branches.tag "" tag
+    Git.Branches.pushTag "" "origin" tag
+    
     GitHub.createClientWithToken gitHubToken.Value
     |> GitHub.draftNewRelease
         gitHubOwner

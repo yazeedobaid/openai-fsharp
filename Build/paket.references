@@ -5,3 +5,4 @@ Fake.Core.ReleaseNotes
 Fake.IO.FileSystem
 Fake.Api.GitHub
 Fake.DotNet.Paket
+Fake.Tools.Git

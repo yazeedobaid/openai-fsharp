@@ -6,6 +6,7 @@ nuget Fake.Core.ReleaseNotes
 nuget Fake.Core.Target
 nuget Fake.DotNet.Cli
 nuget Fake.DotNet.Paket
+nuget Fake.Tools.Git
 nuget FSharp.Core 7.0.0
 nuget FsHttp 10.0.0
 nuget Microsoft.NET.Test.Sdk >= 17.0

@@ -102,6 +102,14 @@ NUGET
     Fake.Net.Http (5.23.1) - restriction: >= netstandard2.0
       Fake.Core.Trace (>= 5.23.1) - restriction: >= netstandard2.0
       FSharp.Core (>= 6.0) - restriction: >= netstandard2.0
+    Fake.Tools.Git (5.23.1)
+      Fake.Core.Environment (>= 5.23.1) - restriction: >= netstandard2.0
+      Fake.Core.Process (>= 5.23.1) - restriction: >= netstandard2.0
+      Fake.Core.SemVer (>= 5.23.1) - restriction: >= netstandard2.0
+      Fake.Core.String (>= 5.23.1) - restriction: >= netstandard2.0
+      Fake.Core.Trace (>= 5.23.1) - restriction: >= netstandard2.0
+      Fake.IO.FileSystem (>= 5.23.1) - restriction: >= netstandard2.0
+      FSharp.Core (>= 6.0) - restriction: >= netstandard2.0
     FParsec (1.1.1) - restriction: >= netstandard2.0
       FSharp.Core (>= 4.3.4) - restriction: || (>= net45) (>= netstandard2.0)
       System.ValueTuple (>= 4.4) - restriction: >= net45
