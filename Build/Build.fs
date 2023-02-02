@@ -14,6 +14,7 @@ Context.FakeExecutionContext.Create false "build.fsx" []
 |> Context.setExecutionContext
 
 let outputDirectory = "./out"
+Directory.delete outputDirectory
 
 let changelog = Changelog.load (__SOURCE_DIRECTORY__ </> ".." </> "CHANGELOG.md")
 
@@ -89,13 +90,14 @@ let githubRelease () =
     |> Async.RunSynchronously
 
 let nuGetPush () =
-    Paket.push
-    <| fun c ->
-        { c with
-            ToolType = ToolType.CreateLocalTool()
-            PublishUrl = "https://www.nuget.org"
-            WorkingDir = outputDirectory
-            ApiKey = nuGetToken.Value }
+    // Paket.push
+    // <| fun c ->
+    //     { c with
+    //         ToolType = ToolType.CreateLocalTool()
+    //         PublishUrl = "https://www.nuget.org"
+    //         WorkingDir = outputDirectory
+    //         ApiKey = nuGetToken.Value }
+    ignore ""
 
 let release _ = nuGetPush >> githubRelease |> ignore
 
