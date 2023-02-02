@@ -116,6 +116,8 @@ let result =
     }
 ```
 
+<br />
+
 ### `Completions` Resource
 
 Given a prompt, the model will return one or more predicted completions, and can also return the probabilities 
@@ -152,6 +154,8 @@ let result =
     }
 ```
 
+<br />
+
 ### `Edits` Resource
 
 Given a prompt and an instruction, the model will return an edited version of the prompt.
@@ -184,6 +188,8 @@ let result =
          Instruction = "Fix the spelling mistakes" }
     }
 ```
+
+<br />
 
 ### `Images` Resource
 
@@ -286,6 +292,8 @@ let result =
     }
 ```
 
+<br />
+
 ### `Embeddings` Resource
 
 Get a vector representation of a given input that can be easily consumed by machine learning models and algorithms.
@@ -316,6 +324,8 @@ let result =
                Input = "The food was delicious and the waiter..." }
     }
 ```
+
+<br />
 
 ### `Files` Resource
 
@@ -431,6 +441,8 @@ let result =
     }
 ```
 
+<br />
+
 ### `FineTunes` Resource
 
 Manage fine-tuning jobs to tailor a model to your specific training data.
@@ -538,6 +550,8 @@ let result =
     }
 ```
 
+<br />
+
 ### `Moderations` Resource
 
 Given a input text, outputs if the model classifies it as violating OpenAI's content policy.
@@ -570,4 +584,4 @@ let result =
 ```
 
 ## Credits
-This library was inspired from [openai-php](https://github.com/openai-php/client) library and [FsHttp](https://github.com/fsprojects/FsHttp)
+This library was inspired from [openai-php](https://github.com/openai-php/client) library and [FsHttp](https://github.com/fsprojects/FsHttp).
