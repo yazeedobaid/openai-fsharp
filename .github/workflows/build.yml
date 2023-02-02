@@ -1,0 +1,27 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Build
+
+on:
+  [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET 7
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '7.0.102'
+      - name: run build
+        run: |
+          chmod +x ./build.sh
+          ./build.sh
+      - name: publish build artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: openai-fsharp
+          path: out
