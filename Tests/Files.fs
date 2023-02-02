@@ -65,6 +65,7 @@ let tests =
                       endPoint (url "")
                       apiKey "apiKey"
                       files
+
                       upload
                           { File = sampleFilePath
                             Purpose = "fine-tune" }

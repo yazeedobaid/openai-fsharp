@@ -116,7 +116,8 @@ module FineTunes =
 
     let fineTunes (config: Config) : ConfigWithFineTuneContext =
         ConfigWithFineTuneContext(
-            { config.ApiConfig with Endpoint = Url.combine config.ApiConfig.Endpoint "/fine-tunes" },
+            { config.ApiConfig with
+                Endpoint = Url.combine config.ApiConfig.Endpoint "/fine-tunes" },
             config.HttpRequester
         )
 
@@ -127,13 +128,16 @@ module FineTunes =
         config.HttpRequester.getRequest<ListResponse> config.ApiConfig
 
     let retrieve (fineTuneId: string) (config: ConfigWithFineTuneContext) : RetrieveFineTuneResponse =
-        { config.ApiConfig with Endpoint = Url.combine config.ApiConfig.Endpoint fineTuneId }
+        { config.ApiConfig with
+            Endpoint = Url.combine config.ApiConfig.Endpoint fineTuneId }
         |> config.HttpRequester.getRequest<RetrieveFineTuneResponse>
 
     let cancel (fineTuneId: string) (config: ConfigWithFineTuneContext) : CancelFineTuneResponse =
         config.HttpRequester.postRequestEmpty<CancelFineTuneResponse>
-            { config.ApiConfig with Endpoint = Url.combine config.ApiConfig.Endpoint (fineTuneId + "/cancel") }
+            { config.ApiConfig with
+                Endpoint = Url.combine config.ApiConfig.Endpoint (fineTuneId + "/cancel") }
 
     let listEvents (fineTuneId: string) (config: ConfigWithFineTuneContext) : ListFineTuneEventsResponse =
-        { config.ApiConfig with Endpoint = Url.combine config.ApiConfig.Endpoint (fineTuneId + "/events") }
+        { config.ApiConfig with
+            Endpoint = Url.combine config.ApiConfig.Endpoint (fineTuneId + "/events") }
         |> config.HttpRequester.getRequest<ListFineTuneEventsResponse>

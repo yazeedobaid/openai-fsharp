@@ -47,7 +47,8 @@ module Models =
 
     let models (config: Config) : ConfigWithModelContext =
         ConfigWithModelContext(
-            { config.ApiConfig with Endpoint = Url.combine config.ApiConfig.Endpoint "/models" },
+            { config.ApiConfig with
+                Endpoint = Url.combine config.ApiConfig.Endpoint "/models" },
             config.HttpRequester
         )
 
@@ -55,9 +56,11 @@ module Models =
         config.HttpRequester.getRequest<ListModelsResponse> config.ApiConfig
 
     let retrieve (modelName: string) (config: ConfigWithModelContext) : ModelResponse =
-        { config.ApiConfig with Endpoint = Url.combine config.ApiConfig.Endpoint modelName }
+        { config.ApiConfig with
+            Endpoint = Url.combine config.ApiConfig.Endpoint modelName }
         |> config.HttpRequester.getRequest<ModelResponse>
 
     let delete (modelId: string) (config: ConfigWithModelContext) : DeleteModelResponse =
-        { config.ApiConfig with Endpoint = Url.combine config.ApiConfig.Endpoint modelId }
+        { config.ApiConfig with
+            Endpoint = Url.combine config.ApiConfig.Endpoint modelId }
         |> config.HttpRequester.deleteRequest<DeleteModelResponse>

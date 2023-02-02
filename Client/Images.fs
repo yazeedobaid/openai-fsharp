@@ -42,19 +42,22 @@ module Images =
 
     let images (config: Config) : ConfigWithImageContext =
         ConfigWithImageContext(
-            { config.ApiConfig with Endpoint = Url.combine config.ApiConfig.Endpoint "/images" },
+            { config.ApiConfig with
+                Endpoint = Url.combine config.ApiConfig.Endpoint "/images" },
             config.HttpRequester
         )
 
     let create (request: CreateRequest) (config: ConfigWithImageContext) : CreateResponse =
         let apiConfig =
-            { config.ApiConfig with Endpoint = Url.combine config.ApiConfig.Endpoint "/generations" }
+            { config.ApiConfig with
+                Endpoint = Url.combine config.ApiConfig.Endpoint "/generations" }
 
         config.HttpRequester.postRequest<CreateRequest, CreateResponse> apiConfig request
 
     let edit (request: EditRequest) (config: ConfigWithImageContext) : EditResponse =
         let apiConfig =
-            { config.ApiConfig with Endpoint = Url.combine config.ApiConfig.Endpoint "/edits" }
+            { config.ApiConfig with
+                Endpoint = Url.combine config.ApiConfig.Endpoint "/edits" }
 
         let httpRequest =
             config.HttpRequester.PrepareRequestForMultiPart apiConfig {
@@ -71,7 +74,8 @@ module Images =
 
     let variation (request: VariationRequest) (config: ConfigWithImageContext) : VariationResponse =
         let apiConfig =
-            { config.ApiConfig with Endpoint = Url.combine config.ApiConfig.Endpoint "/variations" }
+            { config.ApiConfig with
+                Endpoint = Url.combine config.ApiConfig.Endpoint "/variations" }
 
         let httpRequest =
             config.HttpRequester.PrepareRequestForMultiPart apiConfig {

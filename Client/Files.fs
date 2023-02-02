@@ -21,9 +21,9 @@ module Files =
     type ListResponse = { Object: string; Data: File[] }
 
     type UploadFileResponse = File
-    
+
     type RetrieveFileResponse = File
-    
+
     type DeleteResponse =
         { Id: string
           Object: string
@@ -31,7 +31,8 @@ module Files =
 
     let files (config: Config) : ConfigWithFileContext =
         ConfigWithFileContext(
-            { config.ApiConfig with Endpoint = Url.combine config.ApiConfig.Endpoint "/files" },
+            { config.ApiConfig with
+                Endpoint = Url.combine config.ApiConfig.Endpoint "/files" },
             config.HttpRequester
         )
 
@@ -49,13 +50,16 @@ module Files =
         config.HttpRequester.postRequestMultiPart<UploadFileResponse> httpRequest
 
     let delete (fileId: string) (config: ConfigWithFileContext) : DeleteResponse =
-        { config.ApiConfig with Endpoint = Url.combine config.ApiConfig.Endpoint fileId }
+        { config.ApiConfig with
+            Endpoint = Url.combine config.ApiConfig.Endpoint fileId }
         |> config.HttpRequester.deleteRequest<DeleteResponse>
 
     let retrieve (fileId: string) (config: ConfigWithFileContext) : RetrieveFileResponse =
-        { config.ApiConfig with Endpoint = Url.combine config.ApiConfig.Endpoint fileId }
+        { config.ApiConfig with
+            Endpoint = Url.combine config.ApiConfig.Endpoint fileId }
         |> config.HttpRequester.getRequest<RetrieveFileResponse>
 
     let download (fileId: string) (config: ConfigWithFileContext) : string =
-        { config.ApiConfig with Endpoint = Url.combine config.ApiConfig.Endpoint (fileId + "/content") }
+        { config.ApiConfig with
+            Endpoint = Url.combine config.ApiConfig.Endpoint (fileId + "/content") }
         |> config.HttpRequester.getRequestString

@@ -36,6 +36,7 @@ let tests =
                       endPoint (url "")
                       apiKey "apiKey"
                       moderations
+
                       create
                           { Model = "text-moderation-latest"
                             Input = "I want to kill them." }

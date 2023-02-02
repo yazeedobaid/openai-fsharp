@@ -26,7 +26,8 @@ module Embeddings =
 
     let embeddings (config: Config) : ConfigWithEmbeddingContext =
         ConfigWithEmbeddingContext(
-            { config.ApiConfig with Endpoint = Url.combine config.ApiConfig.Endpoint "/embeddings" },
+            { config.ApiConfig with
+                Endpoint = Url.combine config.ApiConfig.Endpoint "/embeddings" },
             config.HttpRequester
         )
 

@@ -20,7 +20,9 @@ let tests =
               let response =
                   client
                   |> fineTunes
-                  |> create { CreateRequest.Default with TrainingFile = "file-Lpe0n5tOHtoG6OVVbk5d4iXA" }
+                  |> create
+                      { CreateRequest.Default with
+                          TrainingFile = "file-Lpe0n5tOHtoG6OVVbk5d4iXA" }
 
               Expect.equal response responseObject ""
           }
@@ -34,7 +36,10 @@ let tests =
                       endPoint (url "")
                       apiKey "apiKey"
                       fineTunes
-                      create { CreateRequest.Default with TrainingFile = "file-Lpe0n5tOHtoG6OVVbk5d4iXA" }
+
+                      create
+                          { CreateRequest.Default with
+                              TrainingFile = "file-Lpe0n5tOHtoG6OVVbk5d4iXA" }
                   }
 
               Expect.equal response responseObject ""

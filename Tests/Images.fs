@@ -39,6 +39,7 @@ let tests =
                       endPoint (url "")
                       apiKey "apiKey"
                       images
+
                       create
                           { Prompt = "A cute baby sea otter"
                             N = 2
@@ -48,7 +49,7 @@ let tests =
 
               Expect.equal response responseObject ""
           }
-          
+
           test "images edit test" {
               let response = editImageResponse ()
               let responseObject = serialize<EditResponse> response
@@ -80,6 +81,7 @@ let tests =
                       endPoint (url "")
                       apiKey "apiKey"
                       images
+
                       edit
                           { Image = sampleImagePath
                             Mask = sampleImagePath
@@ -91,7 +93,7 @@ let tests =
 
               Expect.equal response responseObject ""
           }
-          
+
           test "images variation test" {
               let response = variationImageResponse ()
               let responseObject = serialize<VariationResponse> response
@@ -121,6 +123,7 @@ let tests =
                       endPoint (url "")
                       apiKey "apiKey"
                       images
+
                       variation
                           { Image = sampleImagePath
                             N = 2

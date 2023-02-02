@@ -45,7 +45,8 @@ module Completions =
 
     let completions (config: Config) : ConfigWithCompletionContext =
         ConfigWithCompletionContext(
-            { config.ApiConfig with Endpoint = Url.combine config.ApiConfig.Endpoint "/completions" },
+            { config.ApiConfig with
+                Endpoint = Url.combine config.ApiConfig.Endpoint "/completions" },
             config.HttpRequester
         )
 

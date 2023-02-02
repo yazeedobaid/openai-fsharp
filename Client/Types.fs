@@ -13,7 +13,7 @@ type IHttpRequester =
     abstract member PrepareRequestForMultiPart: config: ApiConfig -> HeaderContext
     abstract member postRequestMultiPart<'R> : httpRequest: MultipartContext -> 'R
     abstract member getRequest<'R> : config: ApiConfig -> 'R
-    abstract member getRequestString : config: ApiConfig -> string
+    abstract member getRequestString: config: ApiConfig -> string
     abstract member deleteRequest<'R> : config: ApiConfig -> 'R
 
 type Config(apiConfig: ApiConfig, httpRequester: IHttpRequester) =
@@ -23,7 +23,7 @@ type Config(apiConfig: ApiConfig, httpRequester: IHttpRequester) =
 // following types act like context switchers. To be able to use same API
 // name for different resources. For example, models and files resources
 // both have list and retrieve APIs. So to make it consistent and use same
-// API name for both, below types were added to APIs signatures. 
+// API name for both, below types were added to APIs signatures.
 
 type ConfigWithModelContext(apiConfig: ApiConfig, httpRequester: IHttpRequester) =
     inherit Config(apiConfig, httpRequester)

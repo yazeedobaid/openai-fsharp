@@ -13,7 +13,11 @@ let url (s: string) = $"http://127.0.0.1:8080{s}"
 
 let serve (app: WebPart) =
     let cts = new CancellationTokenSource()
-    let conf = { defaultConfig with cancellationToken = cts.Token }
+
+    let conf =
+        { defaultConfig with
+            cancellationToken = cts.Token }
+
     let listening, server = startWebServerAsync conf app
 
     Async.Start(server, cts.Token)

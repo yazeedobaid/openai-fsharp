@@ -38,6 +38,7 @@ let tests =
                       endPoint (url "")
                       apiKey "apiKey"
                       completions
+
                       create
                           { Model = "text-davinci-003"
                             Prompt = "the earth has a shape of"

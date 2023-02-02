@@ -47,7 +47,8 @@ module Moderations =
 
     let moderations (config: Config) : ConfigWithModerationContext =
         ConfigWithModerationContext(
-            { config.ApiConfig with Endpoint = Url.combine config.ApiConfig.Endpoint "/moderations" },
+            { config.ApiConfig with
+                Endpoint = Url.combine config.ApiConfig.Endpoint "/moderations" },
             config.HttpRequester
         )
 

@@ -17,8 +17,8 @@ type HttpRequester() =
             }
             |> Request.send
             |> Response.deserializeJson<'R>
-        
-        member this.postRequestEmpty<'R> (config: ApiConfig) =
+
+        member this.postRequestEmpty<'R>(config: ApiConfig) =
             http {
                 POST config.Endpoint
                 AuthorizationBearer config.ApiKey
@@ -48,7 +48,7 @@ type HttpRequester() =
             }
             |> Request.send
             |> Response.deserializeJson<'R>
-        
+
         member this.getRequestString(config: ApiConfig) =
             http {
                 GET config.Endpoint
@@ -58,7 +58,7 @@ type HttpRequester() =
             }
             |> Request.send
             |> Response.toText
-        
+
         member this.deleteRequest<'R>(config: ApiConfig) =
             http {
                 DELETE config.Endpoint

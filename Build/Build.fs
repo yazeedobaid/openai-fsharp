@@ -82,7 +82,7 @@ let githubRelease () =
 
     Git.Branches.tag "" tag
     Git.Branches.pushTag "" "origin" tag
-    
+
     GitHub.createClientWithToken gitHubToken.Value
     |> GitHub.draftNewRelease
         gitHubOwner
@@ -118,7 +118,7 @@ Target.create "Pack" pack
 Target.create "Release" release
 
 let dependencies =
-    [ "Clean" ==> "Restore" ==> "Build" ==> "Test"
+    [ "Clean" ==> "Restore" ==> "CheckFormatting" ==> "Build" ==> "Test"
 
       "Test" ==> "Pack" ==> "Release" ]
 

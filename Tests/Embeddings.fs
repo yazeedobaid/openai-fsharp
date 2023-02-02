@@ -36,6 +36,7 @@ let tests =
                       endPoint (url "")
                       apiKey "apiKey"
                       embeddings
+
                       create
                           { Model = "text-embedding-ada-002"
                             Input = "The food was delicious and the waiter..." }

@@ -37,6 +37,7 @@ let tests =
                       endPoint (url "")
                       apiKey "apiKey"
                       edits
+
                       create
                           { Model = "text-davinci-edit-001"
                             Input = "What day of the wek is it?"

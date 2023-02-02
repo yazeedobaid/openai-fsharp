@@ -28,7 +28,8 @@ module Edits =
 
     let edits (config: Config) : ConfigWithEditContext =
         ConfigWithEditContext(
-            { config.ApiConfig with Endpoint = Url.combine config.ApiConfig.Endpoint "/edits" },
+            { config.ApiConfig with
+                Endpoint = Url.combine config.ApiConfig.Endpoint "/edits" },
             config.HttpRequester
         )
 
