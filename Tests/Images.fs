@@ -1,5 +1,6 @@
 module Tests.Images
 
+open System.IO
 open OpenAI
 open OpenAI.Client
 open OpenAI.Images
@@ -51,6 +52,7 @@ let tests =
           test "images edit test" {
               let response = editImageResponse ()
               let responseObject = serialize<EditResponse> response
+              let sampleImagePath = Path.Combine("Tests", "Fixtures", "sample-image.png")
 
               let client = Config({ ApiKey = "apiKey"; Endpoint = url "" }, HttpRequester())
 
@@ -58,8 +60,8 @@ let tests =
                   client
                   |> images
                   |> edit
-                      { Image = "Tests\Fixtures\sample-image.png"
-                        Mask = "Tests\Fixtures\sample-image.png"
+                      { Image = sampleImagePath
+                        Mask = sampleImagePath
                         Prompt = ""
                         N = 2
                         Size = "1024x1024"
@@ -71,6 +73,7 @@ let tests =
           test "images edit test using computation expression" {
               let response = editImageResponse ()
               let responseObject = serialize<EditResponse> response
+              let sampleImagePath = Path.Combine("Tests", "Fixtures", "sample-image.png")
 
               let response =
                   openAI {
@@ -78,8 +81,8 @@ let tests =
                       apiKey "apiKey"
                       images
                       edit
-                          { Image = "Tests\Fixtures\sample-image.png"
-                            Mask = "Tests\Fixtures\sample-image.png"
+                          { Image = sampleImagePath
+                            Mask = sampleImagePath
                             Prompt = ""
                             N = 2
                             Size = "1024x1024"
@@ -92,6 +95,7 @@ let tests =
           test "images variation test" {
               let response = variationImageResponse ()
               let responseObject = serialize<VariationResponse> response
+              let sampleImagePath = Path.Combine("Tests", "Fixtures", "sample-image.png")
 
               let client = Config({ ApiKey = "apiKey"; Endpoint = url "" }, HttpRequester())
 
@@ -99,7 +103,7 @@ let tests =
                   client
                   |> images
                   |> variation
-                      { Image = "Tests\Fixtures\sample-image.png"
+                      { Image = sampleImagePath
                         N = 2
                         Size = "1024x1024"
                         responseFormat = "url" }
@@ -110,6 +114,7 @@ let tests =
           test "images variation test using computation expression" {
               let response = variationImageResponse ()
               let responseObject = serialize<VariationResponse> response
+              let sampleImagePath = Path.Combine("Tests", "Fixtures", "sample-image.png")
 
               let response =
                   openAI {
@@ -117,7 +122,7 @@ let tests =
                       apiKey "apiKey"
                       images
                       variation
-                          { Image = "Tests\Fixtures\sample-image.png"
+                          { Image = sampleImagePath
                             N = 2
                             Size = "1024x1024"
                             responseFormat = "url" }

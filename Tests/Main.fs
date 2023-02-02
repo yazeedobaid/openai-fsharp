@@ -17,6 +17,7 @@ open Expecto
 
 [<EntryPoint>]
 let main argv =
+    let fixturesPath = Path.Combine("Tests", "Fixtures", "sample-json.txt")
     use _ =
         choose [
             GET >=> path "/models" >=> request (fun _ -> listModelsResponse () |> Successful.OK)
@@ -32,7 +33,7 @@ let main argv =
             GET >=> path "/files" >=> request (fun _ -> listFilesResponse () |> Successful.OK)
             POST >=> path "/files" >=> request (fun _ -> uploadFileResponse () |> Successful.OK)
             DELETE >=> pathScan "/files/%s" (fun _ -> request (fun _ -> deleteFileResponse () |> Successful.OK))
-            GET >=> pathScan "/files/%s/content" (fun _ -> request (fun _ -> File.ReadAllText @"Tests\Fixtures\sample-json.txt" |> Successful.OK))
+            GET >=> pathScan "/files/%s/content" (fun _ -> request (fun _ -> File.ReadAllText fixturesPath |> Successful.OK))
             GET >=> pathScan "/files/%s" (fun _ -> request (fun _ -> retrieveFileResponse () |> Successful.OK))
             POST >=> path "/fine-tunes" >=> request (fun _ -> createFineTuneResponse () |> Successful.OK)
             GET >=> path "/fine-tunes" >=> request (fun _ -> listFineTunesResponse () |> Successful.OK)

@@ -41,6 +41,7 @@ let tests =
           test "files upload test" {
               let response = uploadFileResponse ()
               let responseObject = serialize<UploadFileResponse> response
+              let sampleFilePath = Path.Combine("Tests", "Fixtures", "sample-json.txt")
 
               let client = Config({ ApiKey = "apiKey"; Endpoint = url "" }, HttpRequester())
 
@@ -48,7 +49,7 @@ let tests =
                   client
                   |> files
                   |> upload
-                      { File = @"Tests\Fixtures\sample-json.txt"
+                      { File = sampleFilePath
                         Purpose = "fine-tune" }
 
               Expect.equal response responseObject ""
@@ -57,6 +58,7 @@ let tests =
           test "files upload test using computation expression" {
               let response = uploadFileResponse ()
               let responseObject = serialize<UploadFileResponse> response
+              let sampleFilePath = Path.Combine("Tests", "Fixtures", "sample-json.txt")
 
               let response =
                   openAI {
@@ -64,7 +66,7 @@ let tests =
                       apiKey "apiKey"
                       files
                       upload
-                          { File = @"Tests\Fixtures\sample-json.txt"
+                          { File = sampleFilePath
                             Purpose = "fine-tune" }
                   }
 
@@ -124,7 +126,8 @@ let tests =
           }
 
           test "files download test" {
-              let responseString = File.ReadAllText @"Tests\Fixtures\sample-json.txt"
+              let sampleFilePath = Path.Combine("Tests", "Fixtures", "sample-json.txt")
+              let responseString = File.ReadAllText sampleFilePath
 
               let client = Config({ ApiKey = "apiKey"; Endpoint = url "" }, HttpRequester())
 
@@ -134,7 +137,8 @@ let tests =
           }
 
           test "files download test using computation expression" {
-              let responseString = File.ReadAllText @"Tests\Fixtures\sample-json.txt"
+              let sampleFilePath = Path.Combine("Tests", "Fixtures", "sample-json.txt")
+              let responseString = File.ReadAllText sampleFilePath
 
               let response =
                   openAI {
