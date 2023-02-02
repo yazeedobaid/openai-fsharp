@@ -48,7 +48,7 @@ let tests =
                   client
                   |> files
                   |> upload
-                      { File = @"Fixtures/sample-json.txt"
+                      { File = @"Tests\Fixtures\sample-json.txt"
                         Purpose = "fine-tune" }
 
               Expect.equal response responseObject ""
@@ -64,7 +64,7 @@ let tests =
                       apiKey "apiKey"
                       files
                       upload
-                          { File = @"Fixtures/sample-json.txt"
+                          { File = @"Tests\Fixtures\sample-json.txt"
                             Purpose = "fine-tune" }
                   }
 
@@ -124,7 +124,7 @@ let tests =
           }
 
           test "files download test" {
-              let responseString = File.ReadAllText @"Fixtures/sample-json.txt"
+              let responseString = File.ReadAllText @"Tests\Fixtures\sample-json.txt"
 
               let client = Config({ ApiKey = "apiKey"; Endpoint = url "" }, HttpRequester())
 
@@ -134,7 +134,7 @@ let tests =
           }
 
           test "files download test using computation expression" {
-              let responseString = File.ReadAllText @"Fixtures/sample-json.txt"
+              let responseString = File.ReadAllText @"Tests\Fixtures\sample-json.txt"
 
               let response =
                   openAI {

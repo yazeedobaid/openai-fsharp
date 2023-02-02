@@ -58,8 +58,8 @@ let tests =
                   client
                   |> images
                   |> edit
-                      { Image = "Fixtures\sample-image.png"
-                        Mask = "Fixtures\sample-image.png"
+                      { Image = "Tests\Fixtures\sample-image.png"
+                        Mask = "Tests\Fixtures\sample-image.png"
                         Prompt = ""
                         N = 2
                         Size = "1024x1024"
@@ -78,8 +78,8 @@ let tests =
                       apiKey "apiKey"
                       images
                       edit
-                          { Image = "Fixtures\sample-image.png"
-                            Mask = "Fixtures\sample-image.png"
+                          { Image = "Tests\Fixtures\sample-image.png"
+                            Mask = "Tests\Fixtures\sample-image.png"
                             Prompt = ""
                             N = 2
                             Size = "1024x1024"
@@ -99,7 +99,7 @@ let tests =
                   client
                   |> images
                   |> variation
-                      { Image = "Fixtures\sample-image.png"
+                      { Image = "Tests\Fixtures\sample-image.png"
                         N = 2
                         Size = "1024x1024"
                         responseFormat = "url" }
@@ -117,7 +117,7 @@ let tests =
                       apiKey "apiKey"
                       images
                       variation
-                          { Image = "Fixtures\sample-image.png"
+                          { Image = "Tests\Fixtures\sample-image.png"
                             N = 2
                             Size = "1024x1024"
                             responseFormat = "url" }
