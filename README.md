@@ -60,19 +60,11 @@ what models are available and the differences between them.
 
 Lists the currently available models, and provides basic information about each one such as the owner and availability.
 
-<table>
-<tr>
-<td>Method Calls</td><td>CE Builder</td>
-</tr>
-<tr>
-<td>
-
 ```fsharp
 let result = client |> models |> list
 ```
 
-</td>
-<td>
+Or using a computation expression builder:
 
 ```fsharp
 let result =
@@ -84,27 +76,15 @@ let result =
     }
 ```
 
-</td>
-</tr>
-</table>
-
 #### `retrieve`
 
 Retrieves a model instance, providing basic information about the model such as the owner and permissioning.
-
-<table>
-<tr>
-<td>Method Calls</td><td>CE Builder</td>
-</tr>
-<tr>
-<td>
 
 ```fsharp
 let result = client |> models |> retrieve "text-davinci-003"
 ```
 
-</td>
-<td>
+Or using a computation expression builder:
 
 ```fsharp
 let result =
@@ -116,27 +96,15 @@ let result =
     }
 ```
 
-</td>
-</tr>
-</table>
-
 #### `delete`
 
 Delete a fine-tuned model.
-
-<table>
-<tr>
-<td>Method Calls</td><td>CE Builder</td>
-</tr>
-<tr>
-<td>
 
 ```fsharp
 let result = client |> models |> delete "curie:ft-acmeco-2021-03-03-21-44-20"
 ```
 
-</td>
-<td>
+Or using a computation expression builder:
 
 ```fsharp
 let result =
@@ -148,10 +116,6 @@ let result =
     }
 ```
 
-</td>
-</tr>
-</table>
-
 ### `Completions` Resource
 
 Given a prompt, the model will return one or more predicted completions, and can also return the probabilities 
@@ -160,13 +124,6 @@ of alternative tokens at each position.
 #### `create`
 
 Creates a completion for the provided prompt and parameters.
-
-<table>
-<tr>
-<td>Method Calls</td><td>CE Builder</td>
-</tr>
-<tr>
-<td>
 
 ```fsharp
 let result =
@@ -179,8 +136,7 @@ let result =
           Stop = "." }
 ```
 
-</td>
-<td>
+Or using a computation expression builder:
 
 ```fsharp
 let result =
@@ -196,10 +152,6 @@ let result =
     }
 ```
 
-</td>
-</tr>
-</table>
-
 ### `Edits` Resource
 
 Given a prompt and an instruction, the model will return an edited version of the prompt.
@@ -207,13 +159,6 @@ Given a prompt and an instruction, the model will return an edited version of th
 #### `create`
 
 Creates a new edit for the provided input, instruction, and parameters.
-
-<table>
-<tr>
-<td>Method Calls</td><td>CE Builder</td>
-</tr>
-<tr>
-<td>
 
 ```fsharp
 let result =
@@ -225,8 +170,7 @@ let result =
              Instruction = "Fix the spelling mistakes" }
 ```
 
-</td>
-<td>
+Or using a computation expression builder:
 
 ```fsharp
 let result =
@@ -241,10 +185,6 @@ let result =
     }
 ```
 
-</td>
-</tr>
-</table>
-
 ### `Images` Resource
 
 Given a prompt and/or an input image, the model will generate a new image.
@@ -252,13 +192,6 @@ Given a prompt and/or an input image, the model will generate a new image.
 #### `create`
 
 Creates an image given a prompt.
-
-<table>
-<tr>
-<td>Method Calls</td><td>CE Builder</td>
-</tr>
-<tr>
-<td>
 
 ```fsharp
 let result =
@@ -271,8 +204,7 @@ let result =
            responseFormat = "url" }
 ```
 
-</td>
-<td>
+Or using a computation expression builder:
 
 ```fsharp
 let result =
@@ -288,20 +220,9 @@ let result =
     }
 ```
 
-</td>
-</tr>
-</table>
-
 #### `edit`
 
 Creates an edited or extended image given an original image and a prompt.
-
-<table>
-<tr>
-<td>Method Calls</td><td>CE Builder</td>
-</tr>
-<tr>
-<td>
 
 ```fsharp
 let result =
@@ -316,8 +237,7 @@ let result =
           responseFormat = "url" }
 ```
 
-</td>
-<td>
+Or using a computation expression builder:
 
 ```fsharp
 let result =
@@ -335,20 +255,9 @@ let result =
     }
 ```
 
-</td>
-</tr>
-</table>
-
 #### `variation`
 
 Creates a variation of a given image.
-
-<table>
-<tr>
-<td>Method Calls</td><td>CE Builder</td>
-</tr>
-<tr>
-<td>
 
 ```fsharp
 let result =
@@ -361,8 +270,7 @@ let result =
           responseFormat = "url" }
 ```
 
-</td>
-<td>
+Or using a computation expression builder:
 
 ```fsharp
 let result =
@@ -378,10 +286,6 @@ let result =
     }
 ```
 
-</td>
-</tr>
-</table>
-
 ### `Embeddings` Resource
 
 Get a vector representation of a given input that can be easily consumed by machine learning models and algorithms.
@@ -389,13 +293,6 @@ Get a vector representation of a given input that can be easily consumed by mach
 #### `create`
 
 Creates an embedding vector representing the input text.
-
-<table>
-<tr>
-<td>Method Calls</td><td>CE Builder</td>
-</tr>
-<tr>
-<td>
 
 ```fsharp
 let result =
@@ -406,8 +303,7 @@ let result =
           Input = "The food was delicious and the waiter..." }
 ```
 
-</td>
-<td>
+Or using a computation expression builder:
 
 ```fsharp
 let result =
@@ -421,10 +317,6 @@ let result =
     }
 ```
 
-</td>
-</tr>
-</table>
-
 ### `Files` Resource
 
 Files are used to upload documents that can be used with features like Fine-tuning.
@@ -433,19 +325,11 @@ Files are used to upload documents that can be used with features like Fine-tuni
 
 Returns a list of files that belong to the user's organization.
 
-<table>
-<tr>
-<td>Method Calls</td><td>CE Builder</td>
-</tr>
-<tr>
-<td>
-
 ```fsharp
 let result = client |> files |> list
 ```
 
-</td>
-<td>
+Or using a computation expression builder:
 
 ```fsharp
 let result =
@@ -457,20 +341,9 @@ let result =
      }
 ```
 
-</td>
-</tr>
-</table>
-
 #### `upload`
 
 Upload a file that contains document(s) to be used across various endpoints/features.
-
-<table>
-<tr>
-<td>Method Calls</td><td>CE Builder</td>
-</tr>
-<tr>
-<td>
 
 ```fsharp
 let result =
@@ -481,8 +354,7 @@ let result =
           Purpose = "fine-tune" }
 ```
 
-</td>
-<td>
+Or using a computation expression builder:
 
 ```fsharp
 let result =
@@ -496,20 +368,9 @@ let result =
     }
 ```
 
-</td>
-</tr>
-</table>
-
 #### `delete`
 
 Delete a file.
-
-<table>
-<tr>
-<td>Method Calls</td><td>CE Builder</td>
-</tr>
-<tr>
-<td>
 
 ```fsharp
 let result =
@@ -518,8 +379,7 @@ let result =
     |> delete "file-qtUwySute1Zf2yT6mWIGTCwq"
 ```
 
-</td>
-<td>
+Or using a computation expression builder:
 
 ```fsharp
 let result =
@@ -531,27 +391,15 @@ let result =
     }
 ```
 
-</td>
-</tr>
-</table>
-
 #### `retrieve`
 
 Returns information about a specific file.
-
-<table>
-<tr>
-<td>Method Calls</td><td>CE Builder</td>
-</tr>
-<tr>
-<td>
 
 ```fsharp
 let result = client |> files |> retrieve "file-Lpe0n5tOHtoG6OVVbk5d4iXA"
 ```
 
-</td>
-<td>
+Or using a computation expression builder:
 
 ```fsharp
 let result =
@@ -563,27 +411,15 @@ let result =
     }
 ```
 
-</td>
-</tr>
-</table>
-
 #### `download`
 
 Returns the contents of the specified file.
-
-<table>
-<tr>
-<td>Method Calls</td><td>CE Builder</td>
-</tr>
-<tr>
-<td>
 
 ```fsharp
 let result = client |> files |> download "file-Lpe0n5tOHtoG6OVVbk5d4iXA"
 ```
 
-</td>
-<td>
+Or using a computation expression builder:
 
 ```fsharp
 let result =
@@ -595,10 +431,6 @@ let result =
     }
 ```
 
-</td>
-</tr>
-</table>
-
 ### `FineTunes` Resource
 
 Manage fine-tuning jobs to tailor a model to your specific training data.
@@ -607,13 +439,6 @@ Manage fine-tuning jobs to tailor a model to your specific training data.
 
 Creates a job that fine-tunes a specified model from a given dataset.
 
-<table>
-<tr>
-<td>Method Calls</td><td>CE Builder</td>
-</tr>
-<tr>
-<td>
-
 ```fsharp
 let result =
     client
@@ -621,8 +446,7 @@ let result =
     |> create { CreateRequest.Default with TrainingFile = "file-Lpe0n5tOHtoG6OVVbk5d4iXA" }
 ```
 
-</td>
-<td>
+Or using a computation expression builder:
 
 ```fsharp
 let result = 
@@ -634,27 +458,15 @@ let result =
     }
 ```
 
-</td>
-</tr>
-</table>
-
 #### `list`
 
 List your organization's fine-tuning jobs.
-
-<table>
-<tr>
-<td>Method Calls</td><td>CE Builder</td>
-</tr>
-<tr>
-<td>
 
 ```fsharp
 let result = client |> fineTunes |> list
 ```
 
-</td>
-<td>
+Or using a computation expression builder:
 
 ```fsharp
 let result =
@@ -666,27 +478,15 @@ let result =
     }
 ```
 
-</td>
-</tr>
-</table>
-
 #### `retrieve`
 
 Gets info about the fine-tune job.
-
-<table>
-<tr>
-<td>Method Calls</td><td>CE Builder</td>
-</tr>
-<tr>
-<td>
 
 ```fsharp
 let result = client |> fineTunes |> retrieve "ft-kNJeZjAhlmFLdCuIzcpkrmNI"
 ```
 
-</td>
-<td>
+Or using a computation expression builder:
 
 ```fsharp
 let result =
@@ -698,27 +498,15 @@ let result =
     }
 ```
 
-</td>
-</tr>
-</table>
-
 #### `cancel`
 
 Immediately cancel a fine-tune job.
-
-<table>
-<tr>
-<td>Method Calls</td><td>CE Builder</td>
-</tr>
-<tr>
-<td>
 
 ```fsharp
 let result = client |> fineTunes |> cancel "ft-kNJeZjAhlmFLdCuIzcpkrmNI"
 ```
 
-</td>
-<td>
+Or using a computation expression builder:
 
 ```fsharp
 let result =
@@ -730,27 +518,15 @@ let result =
  }
 ```
 
-</td>
-</tr>
-</table>
-
 #### `list events`
 
 Get fine-grained status updates for a fine-tune job.
-
-<table>
-<tr>
-<td>Method Calls</td><td>CE Builder</td>
-</tr>
-<tr>
-<td>
 
 ```fsharp
 let result = client |> fineTunes |> listEvents "ft-kNJeZjAhlmFLdCuIzcpkrmNI"
 ```
 
-</td>
-<td>
+Or using a computation expression builder:
 
 ```fsharp
 let result =
@@ -762,22 +538,13 @@ let result =
     }
 ```
 
-</td>
-</tr>
-</table>
-
 ### `Moderations` Resource
+
+Given a input text, outputs if the model classifies it as violating OpenAI's content policy.
 
 #### `create`
 
 Classifies if text violates OpenAI's Content Policy.
-
-<table>
-<tr>
-<td>Method Calls</td><td>CE Builder</td>
-</tr>
-<tr>
-<td>
 
 ```fsharp
 let result =
@@ -788,8 +555,7 @@ let result =
        Input = "I want to kill them." }
 ```
 
-</td>
-<td>
+Or using a computation expression builder:
 
 ```fsharp
 let result =
@@ -802,10 +568,6 @@ let result =
            Input = "I want to kill them." }
  }
 ```
-
-</td>
-</tr>
-</table>
 
 ## Credits
 This library was inspired from [openai-php](https://github.com/openai-php/client) library and [FsHttp](https://github.com/fsprojects/FsHttp)
