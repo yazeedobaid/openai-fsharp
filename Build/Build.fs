@@ -90,16 +90,17 @@ let githubRelease () =
     |> Async.RunSynchronously
 
 let nuGetPush () =
-    // Paket.push
-    // <| fun c ->
-    //     { c with
-    //         ToolType = ToolType.CreateLocalTool()
-    //         PublishUrl = "https://www.nuget.org"
-    //         WorkingDir = outputDirectory
-    //         ApiKey = nuGetToken.Value }
-    ignore ""
+    Paket.push
+    <| fun c ->
+        { c with
+            ToolType = ToolType.CreateLocalTool()
+            PublishUrl = "https://www.nuget.org"
+            WorkingDir = outputDirectory
+            ApiKey = nuGetToken.Value }
 
-let release _ = nuGetPush >> githubRelease |> ignore
+let release _ =
+    //nuGetPush ()
+    githubRelease ()
 
 // --------------------------------------------- Targets ---------------------------------------------
 
