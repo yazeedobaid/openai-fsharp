@@ -15,8 +15,8 @@ jobs:
           dotnet-version: '7.0.102'
       - name: run build
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NUGET_TOKEN: ${{ secrets.NUGET_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.RELEASE_GITHUB_TOKEN }}
+          NUGET_TOKEN: ${{ secrets.RELEASE_NUGET_TOKEN }}
         run: |
           chmod +x ./build.sh
           ./build.sh Release

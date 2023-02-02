@@ -15,7 +15,7 @@ jobs:
       - name: run build
         run: |
           chmod +x ./build.sh
-          ./build.sh
+          ./build.sh Pack
       - name: publish build artifacts
         uses: actions/upload-artifact@v2
         with:
