@@ -4,9 +4,9 @@
     <br />
     <p align="center">
         <a href="https://github.com/yazeedobaid/openai-fsharp/actions"><img alt="GitHub Workflow Status (main)" src="https://img.shields.io/github/actions/workflow/status/yazeedobaid/openai-fsharp/build.yml?branch=main&label=build&style=round-square"></a>
-        <a href="https://github.com/yazeedobaid/openai-fsharp"><img alt="License" src="https://img.shields.io/github/license/yazeedobaid/openai-fsharp"></a>
-        <a href="https://github.com/yazeedobaid/openai-fsharp"><img alt="NuGet Version" src="https://img.shields.io/nuget/v/openai.client?color=blue"></a>
-        <a href="https://github.com/yazeedobaid/openai-fsharp"><img alt="NuGet Version" src="https://img.shields.io/nuget/dt/openai.client?color=green"></a>
+        <a href="https://github.com/yazeedobaid/openai-fsharp/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/github/license/yazeedobaid/openai-fsharp"></a>
+        <a href="https://www.nuget.org/packages/OpenAI.Client"><img alt="NuGet Version" src="https://img.shields.io/nuget/v/openai.client?color=blue"></a>
+        <a href="https://www.nuget.org/packages/OpenAI.Client"><img alt="NuGet Version" src="https://img.shields.io/nuget/dt/openai.client?color=green"></a>
     </p>
 </div>
 
