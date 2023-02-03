@@ -10,7 +10,7 @@
         <DebugType>embedded</DebugType>
         <!-- package metadata -->
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
-        <Description>OpenAI - F# - is library that allows you to interact with OpenAI API in an easy, fluent, and typed way!</Description>
+        <Description>OpenAI - F# - A library that allows you to interact with OpenAI API in an easy, fluent, and typed way!</Description>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageProjectUrl>https://github.com/yazeedobaid/openai-fsharp</PackageProjectUrl>
         <PackageIcon>logo.png</PackageIcon>
