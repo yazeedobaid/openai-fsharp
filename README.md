@@ -166,6 +166,39 @@ let result =
 
 <br />
 
+### `Chat` Resource
+
+Given a chat conversation, the model will return a chat completion response.
+
+#### `create`
+
+Creates a completion for the chat message.
+
+```fsharp
+let result =
+    client
+    |> chat
+    |> create
+      { Model = "text-davinci-003"
+        Messages = [| {Role = "user"; Content = "Hello!"} |] }
+```
+
+Or using a computation expression builder:
+
+```fsharp
+let result =
+    openAI {
+    endPoint (url "")
+    apiKey "apiKey"
+    chat
+    create
+      { Model = "text-davinci-003"
+        Messages = [| {Role = "user"; Content = "Hello!"} |] }
+    }
+```
+
+<br />
+
 ### `Edits` Resource
 
 Given a prompt and an instruction, the model will return an edited version of the prompt.
@@ -332,6 +365,68 @@ let result =
         create
              { Model = "text-embedding-ada-002"
                Input = "The food was delicious and the waiter..." }
+    }
+```
+
+<br />
+
+### `Audio` Resource
+
+Turn audio into text.
+
+#### `transcript`
+
+Transcribes audio into the input language.
+
+```fsharp
+let result =
+    client
+    |> audio
+    |> transcript
+      { TranscriptRequest.Default with
+          File = "sample-audio.mp3"
+          Model = "whisper-1" }
+```
+
+Or using a computation expression builder:
+
+```fsharp
+let result =
+    openAI {
+      endPoint (url "")
+      apiKey "apiKey"
+      audio
+      transcript
+          { TranscriptRequest.Default with
+              File = "sample-audio.mp3"
+              Model = "whisper-1" }
+    }
+```
+
+#### `translate`
+
+Translates audio into into English.
+
+```fsharp
+let result =
+    client
+    |> audio
+    |> translate
+      { File = "sample-audio.mp3"
+        Model = "whisper-1" }
+```
+
+Or using a computation expression builder:
+
+```fsharp
+let result =
+    openAI {
+      endPoint (url "")
+      apiKey "apiKey"
+      audio
+      translate
+          { File = "sample-audio.mp3"
+            Model = "whisper-1" }
     }
 ```
 
