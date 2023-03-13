@@ -25,7 +25,7 @@ module Completions =
           Index: int
           LogProbs: ChoiceLogProbs option
           [<JsonPropertyName("finish_reason")>]
-          FinishReason: string }
+          FinishReason: string option }
 
     type Usage =
         { [<JsonPropertyName("prompt_tokens")>]
