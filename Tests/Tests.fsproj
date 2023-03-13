@@ -9,6 +9,7 @@
   <ItemGroup>
     <Compile Include="Fixtures\Models.fs" />
     <Compile Include="Fixtures\Completions.fs" />
+    <Compile Include="Fixtures\Chat.fs" />
     <Compile Include="Fixtures\Edits.fs" />
     <Compile Include="Fixtures\Images.fs" />
     <Compile Include="Fixtures\Embeddings.fs" />
@@ -24,6 +25,7 @@
     <Compile Include="Helpers.fs" />
     <Compile Include="Models.fs" />
     <Compile Include="Completions.fs" />
+    <Compile Include="Chat.fs" />
     <Compile Include="Edits.fs" />
     <Compile Include="Images.fs" />
     <Compile Include="Embeddings.fs" />

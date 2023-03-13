@@ -3,6 +3,7 @@
 open OpenAI
 open OpenAI.Models
 open OpenAI.Completions
+open OpenAI.Chat
 open OpenAI.Edits
 open OpenAI.Images
 open OpenAI.Files
@@ -61,6 +62,19 @@ type OpenAIComputed() =
             request: Completions.CreateRequest
         ) : Completions.CreateResponse =
         Completions.create request config
+
+    [<CustomOperation "chat">]
+    // Start OpenAI Chat resource handling
+    member _.Chat(config: Config) = chat config
+
+    [<CustomOperation "create">]
+    // Chat Create Endpoint
+    member _.Create
+        (
+            config: ConfigWithChatContext,
+            request: Chat.CreateRequest
+        ) : Chat.CreateResponse =
+        Chat.create request config
 
     [<CustomOperation "edits">]
     // Start OpenAI Edits resource handling

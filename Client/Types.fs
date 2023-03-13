@@ -31,6 +31,9 @@ type ConfigWithModelContext(apiConfig: ApiConfig, httpRequester: IHttpRequester)
 type ConfigWithCompletionContext(apiConfig: ApiConfig, httpRequester: IHttpRequester) =
     inherit Config(apiConfig, httpRequester)
 
+type ConfigWithChatContext(apiConfig: ApiConfig, httpRequester: IHttpRequester) =
+    inherit Config(apiConfig, httpRequester)
+
 type ConfigWithEditContext(apiConfig: ApiConfig, httpRequester: IHttpRequester) =
     inherit Config(apiConfig, httpRequester)
 

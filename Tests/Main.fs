@@ -3,6 +3,7 @@
 open System.IO
 open Tests.Fixtures.Models
 open Tests.Fixtures.Completions
+open Tests.Fixtures.Chat
 open Tests.Fixtures.Edits
 open Tests.Fixtures.Images
 open Tests.Fixtures.Embeddings
@@ -31,6 +32,9 @@ let main argv =
               POST
               >=> path "/completions"
               >=> request (fun _ -> createCompletionResponse () |> Successful.OK)
+              POST
+              >=> path "/chat/completions"
+              >=> request (fun _ -> createChatResponse () |> Successful.OK)
               POST
               >=> path "/edits"
               >=> request (fun _ -> createEditResponse () |> Successful.OK)
