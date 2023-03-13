@@ -54,10 +54,9 @@ let main argv =
               POST
               >=> path "/audio/transcriptions"
               >=> request (fun req ->
-                 match req.fieldData "language" with
-                 | Choice1Of2 _ -> transcriptWithLanguageResponse () |> Successful.OK
-                 | Choice2Of2 _ -> transcriptResponse () |> Successful.OK
-              )
+                  match req.fieldData "language" with
+                  | Choice1Of2 _ -> transcriptWithLanguageResponse () |> Successful.OK
+                  | Choice2Of2 _ -> transcriptResponse () |> Successful.OK)
               POST
               >=> path "/audio/translations"
               >=> request (fun _ -> translateResponse () |> Successful.OK)

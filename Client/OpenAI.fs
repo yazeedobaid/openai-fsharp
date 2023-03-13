@@ -71,11 +71,7 @@ type OpenAIComputed() =
 
     [<CustomOperation "create">]
     // Chat Create Endpoint
-    member _.Create
-        (
-            config: ConfigWithChatContext,
-            request: Chat.CreateRequest
-        ) : Chat.CreateResponse =
+    member _.Create(config: ConfigWithChatContext, request: Chat.CreateRequest) : Chat.CreateResponse =
         Chat.create request config
 
     [<CustomOperation "edits">]

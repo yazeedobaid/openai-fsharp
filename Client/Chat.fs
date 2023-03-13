@@ -46,4 +46,5 @@ module Chat =
         let apiConfig =
             { config.ApiConfig with
                 Endpoint = Url.combine config.ApiConfig.Endpoint "/completions" }
+
         config.HttpRequester.postRequest<CreateRequest, CreateResponse> apiConfig request

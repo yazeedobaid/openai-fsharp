@@ -22,7 +22,7 @@ let tests =
                   |> chat
                   |> create
                       { Model = "text-davinci-003"
-                        Messages = [| {Role = "user"; Content = "Hello!"} |] }
+                        Messages = [| { Role = "user"; Content = "Hello!" } |] }
 
               Expect.equal response responseObject ""
           }
@@ -39,7 +39,7 @@ let tests =
 
                       create
                           { Model = "text-davinci-003"
-                            Messages = [| {Role = "user"; Content = "Hello!"} |] }
+                            Messages = [| { Role = "user"; Content = "Hello!" } |] }
                   }
 
               Expect.equal response responseObject ""
