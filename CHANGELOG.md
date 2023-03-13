@@ -8,7 +8,7 @@
 - Audio Resource APIs ([#3](https://github.com/yazeedobaid/openai-fsharp/pull/3))
 
 ### Fixed
-- Fixed finish can be null on completions response ([#1](https://github.com/yazeedobaid/openai-fsharp/pull/1))
+- Fixed finish can be null on completions response ([#3](https://github.com/yazeedobaid/openai-fsharp/pull/3))
 
 ## [0.1.1](https://github.com/yazeedobaid/openai-fsharp/releases/tag/0.1.1) - 2023-03-02
 ### Fixed
