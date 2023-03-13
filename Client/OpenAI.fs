@@ -6,6 +6,8 @@ open OpenAI.Completions
 open OpenAI.Chat
 open OpenAI.Edits
 open OpenAI.Images
+open OpenAI.Embeddings
+open OpenAI.Audio
 open OpenAI.Files
 open OpenAI.FineTunes
 
@@ -112,6 +114,20 @@ type OpenAIComputed() =
     // Embeddings Create Endpoint
     member _.Create(config: ConfigWithEmbeddingContext, request: Embeddings.CreateRequest) : Embeddings.CreateResponse =
         Embeddings.create request config
+
+    [<CustomOperation "audio">]
+    // Start OpenAI Audio resource handling
+    member _.Audio(config: Config) = audio config
+
+    [<CustomOperation "transcript">]
+    // Audio Transcript Endpoint
+    member _.Transcript(config: ConfigWithAudioContext, request: TranscriptRequest) : TranscriptResponse =
+        transcript request config
+
+    [<CustomOperation "translate">]
+    // Audio Translate Endpoint
+    member _.Translate(config: ConfigWithAudioContext, request: TranslateRequest) : TranslateResponse =
+        translate request config
 
     [<CustomOperation "moderations">]
     // Start OpenAI Moderations resource handling

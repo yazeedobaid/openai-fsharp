@@ -7,6 +7,7 @@ open Tests.Fixtures.Chat
 open Tests.Fixtures.Edits
 open Tests.Fixtures.Images
 open Tests.Fixtures.Embeddings
+open Tests.Fixtures.Audio
 open Tests.Fixtures.Moderations
 open Tests.Fixtures.Files
 open Tests.Fixtures.FineTunes
@@ -50,6 +51,16 @@ let main argv =
               POST
               >=> path "/embeddings"
               >=> request (fun _ -> createEmbeddingResponse () |> Successful.OK)
+              POST
+              >=> path "/audio/transcriptions"
+              >=> request (fun req ->
+                 match req.fieldData "language" with
+                 | Choice1Of2 _ -> transcriptWithLanguageResponse () |> Successful.OK
+                 | Choice2Of2 _ -> transcriptResponse () |> Successful.OK
+              )
+              POST
+              >=> path "/audio/translations"
+              >=> request (fun _ -> translateResponse () |> Successful.OK)
               POST
               >=> path "/moderations"
               >=> request (fun _ -> createModerationResponse () |> Successful.OK)

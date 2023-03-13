@@ -43,6 +43,9 @@ type ConfigWithImageContext(apiConfig: ApiConfig, httpRequester: IHttpRequester)
 type ConfigWithEmbeddingContext(apiConfig: ApiConfig, httpRequester: IHttpRequester) =
     inherit Config(apiConfig, httpRequester)
 
+type ConfigWithAudioContext(apiConfig: ApiConfig, httpRequester: IHttpRequester) =
+    inherit Config(apiConfig, httpRequester)
+
 type ConfigWithModerationContext(apiConfig: ApiConfig, httpRequester: IHttpRequester) =
     inherit Config(apiConfig, httpRequester)
 

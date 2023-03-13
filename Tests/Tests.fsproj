@@ -13,6 +13,7 @@
     <Compile Include="Fixtures\Edits.fs" />
     <Compile Include="Fixtures\Images.fs" />
     <Compile Include="Fixtures\Embeddings.fs" />
+    <Compile Include="Fixtures\Audio.fs" />
     <Compile Include="Fixtures\Moderations.fs" />
     <Compile Include="Fixtures\Files.fs" />
     <Compile Include="Fixtures\FineTunes.fs" />
@@ -22,6 +23,7 @@
     <Content Include="Fixtures\sample-json.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Fixtures\sample-audio.mp3" />
     <Compile Include="Helpers.fs" />
     <Compile Include="Models.fs" />
     <Compile Include="Completions.fs" />
@@ -29,6 +31,7 @@
     <Compile Include="Edits.fs" />
     <Compile Include="Images.fs" />
     <Compile Include="Embeddings.fs" />
+    <Compile Include="Audio.fs" />
     <Compile Include="Moderations.fs" />
     <Compile Include="Files.fs" />
     <Compile Include="FineTunes.fs" />
